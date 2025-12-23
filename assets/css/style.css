@@ -106,8 +106,11 @@ img {
 
 .logo img {
     height: 50px;
-    width: auto;
-    object-fit: contain;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-sm);
     transition: transform 0.3s ease;
 }
 
@@ -118,6 +121,7 @@ img {
 @media (max-width: 768px) {
     .logo img {
         height: 40px;
+        width: 40px;
     }
 }
 
@@ -252,6 +256,24 @@ img {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.hero-logo {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 2rem;
+    border: 4px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+    .hero-logo {
+        height: 110px;
+        width: 110px;
+    }
 }
 
 .btn {
