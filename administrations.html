@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإدارات التعليمية - EDU-TECH Qalyubia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .admin-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            transition: 0.2s;
+        }
+        .admin-card:hover {
+            border-color: var(--primary);
+        }
+        .admin-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .admin-status {
+            background-color: var(--bg-body);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="about.html" class="nav-link">
+                    <span class="lang-ar">عن الفريق</span>
+                    <span class="lang-en">About</span>
+                </a>
+                <a href="team.html" class="nav-link">
+                    <span class="lang-ar">الأعضاء</span>
+                    <span class="lang-en">Team</span>
+                </a>
+                <a href="structure.html" class="nav-link">
+                    <span class="lang-ar">الهيكل التنظيمي</span>
+                    <span class="lang-en">Structure</span>
+                </a>
+                <a href="administrations.html" class="nav-link active">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
+
+                <a href="tasks.html" class="nav-link">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="decisions.html" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: 3rem 0;">
+            <div class="container animate-fade-in">
+                <h1 class="hero-title">
+                    <span class="lang-ar">الإدارات التعليمية</span>
+                    <span class="lang-en">Educational Administrations</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">شبكة الفريق في جميع أنحاء المحافظة</span>
+                    <span class="lang-en">The team's network across the governorate</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
+                
+                <!-- Administration Item -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة بنها التعليمية</span>
+                        <span class="lang-en">Benha Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة طوخ التعليمية</span>
+                        <span class="lang-en">Toukh Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة قها التعليمية</span>
+                        <span class="lang-en">Qaha Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة غرب شبرا الخيمة</span>
+                        <span class="lang-en">West Shubra Educational Admin</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة شرق شبرا الخيمة</span>
+                        <span class="lang-en">East Shubra Educational Admin</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة القناطر الخيرية</span>
+                        <span class="lang-en">Qanater Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة قليوب التعليمية</span>
+                        <span class="lang-en">Qalyub Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة الخانكة التعليمية</span>
+                        <span class="lang-en">Khanka Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة شبين القناطر</span>
+                        <span class="lang-en">Shebin El Qanater Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+                
+                 <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة كفر شكر التعليمية</span>
+                        <span class="lang-en">Kafr Shukr Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                 <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة العبور التعليمية</span>
+                        <span class="lang-en">Obour Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+                 <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة الخصوص التعليمية</span>
+                        <span class="lang-en">Khusus Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                <span class="lang-ar">* سيتم تفعيل المواقع الفرعية فور تشكيل الفرق التقنية الخاصة بكل إدارة.</span>
+                <span class="lang-en">* Sub-websites will be activated once the technical teams for each administration are formed.</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EDU-TECH Qalyubia</h3>
+                    <p>
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
+                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="lang-ar">روابط سريعة</span>
+                        <span class="lang-en">Quick Links</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                        <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
+                    <span class="lang-en">&copy; 2024 EDU-TECH Qalyubia Team. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

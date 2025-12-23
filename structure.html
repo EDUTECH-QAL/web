@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهيكل التنظيمي - EDU-TECH Qalyubia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .org-level {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -2rem;
+            width: 2px;
+            height: 2rem;
+            background-color: var(--border);
+            transform: translateX(-50%);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .level-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .org-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        .org-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="about.html" class="nav-link">
+                    <span class="lang-ar">عن الفريق</span>
+                    <span class="lang-en">About</span>
+                </a>
+                <a href="team.html" class="nav-link">
+                    <span class="lang-ar">الأعضاء</span>
+                    <span class="lang-en">Team</span>
+                </a>
+                <a href="structure.html" class="nav-link active">
+                    <span class="lang-ar">الهيكل التنظيمي</span>
+                    <span class="lang-en">Structure</span>
+                </a>
+                <a href="administrations.html" class="nav-link">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
+
+                <a href="tasks.html" class="nav-link">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="decisions.html" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: 3rem 0;">
+            <div class="container animate-fade-in">
+                <h1 class="hero-title">
+                    <span class="lang-ar">الهيكل العام للفريق</span>
+                    <span class="lang-en">Organizational Overview</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">فريق طلابي يعمل تحت إشراف وتوجيه متخصص</span>
+                    <span class="lang-en">A student team working under specialized supervision and guidance</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            
+            <!-- Level 1 -->
+            <div class="org-level">
+                <div class="level-title">
+                    <span class="lang-ar">المستوى الاستراتيجي</span>
+                    <span class="lang-en">Strategic Level</span>
+                </div>
+                <div class="org-card">
+                    <h3>
+                        <span class="lang-ar">المجلس الاستشاري</span>
+                        <span class="lang-en">Advisory Board</span>
+                    </h3>
+                    <p>
+                        <span class="lang-ar">جهة اتخاذ القرار والإشراف العام (قيادات المديرية)</span>
+                        <span class="lang-en">Decision-making and general supervision authority (Directorate Leadership)</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="org-level">
+                <div class="level-title">
+                    <span class="lang-ar">المستوى التنفيذي</span>
+                    <span class="lang-en">Executive Level</span>
+                </div>
+                <div class="grid-3" style="max-width: 900px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="org-card" style="width: 100%;">
+                        <h3>
+                            <span class="lang-ar">الإدارة التنفيذية</span>
+                            <span class="lang-en">Executive Management</span>
+                        </h3>
+                        <p>
+                            <span class="lang-ar">قيادة الفرق التقنية وتوزيع المهام</span>
+                            <span class="lang-en">Leading technical teams and task distribution</span>
+                        </p>
+                    </div>
+                    <div class="org-card" style="width: 100%;">
+                        <h3>
+                            <span class="lang-ar">الإدارة الإدارية</span>
+                            <span class="lang-en">Administrative Management</span>
+                        </h3>
+                        <p>
+                            <span class="lang-ar">التنسيق والمتابعة والعلاقات العامة</span>
+                            <span class="lang-en">Coordination, follow-up, and public relations</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="org-level">
+                <div class="level-title">
+                    <span class="lang-ar">المستوى التشغيلي</span>
+                    <span class="lang-en">Operational Level</span>
+                </div>
+                <div class="org-card">
+                    <h3>
+                        <span class="lang-ar">فرق الإدارات التعليمية</span>
+                        <span class="lang-en">Educational Administration Teams</span>
+                    </h3>
+                    <p>
+                        <span class="lang-ar">الفرق الميدانية في كل إدارة تعليمية بالمحافظة</span>
+                        <span class="lang-en">Field teams in every educational administration in the governorate</span>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EDU-TECH Qalyubia</h3>
+                    <p>
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
+                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="lang-ar">روابط سريعة</span>
+                        <span class="lang-en">Quick Links</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                        <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
+                    <span class="lang-en">&copy; 2024 EDU-TECH Qalyubia Team. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

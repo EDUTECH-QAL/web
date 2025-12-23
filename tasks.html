@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المهام - EDU-TECH Qalyubia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 2rem;
+            width: 2px;
+            background: var(--border);
+        }
+        [dir="ltr"] .timeline::before {
+            right: auto;
+            left: 2rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-right: 4rem;
+        }
+        [dir="ltr"] .timeline-item {
+            padding-right: 0;
+            padding-left: 4rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            right: 1.1rem;
+            top: 0.5rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--surface);
+        }
+        [dir="ltr"] .timeline-dot {
+            right: auto;
+            left: 1.1rem;
+        }
+        .task-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .task-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            background: #dcfce7;
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+        [data-theme="dark"] .task-status {
+            background: #14532d;
+            color: #dcfce7;
+        }
+        .task-status.incomplete {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+        [data-theme="dark"] .task-status.incomplete {
+            background: #422006;
+            color: #fef08a;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="about.html" class="nav-link">
+                    <span class="lang-ar">عن الفريق</span>
+                    <span class="lang-en">About</span>
+                </a>
+                <a href="team.html" class="nav-link">
+                    <span class="lang-ar">الأعضاء</span>
+                    <span class="lang-en">Team</span>
+                </a>
+                <a href="structure.html" class="nav-link">
+                    <span class="lang-ar">الهيكل التنظيمي</span>
+                    <span class="lang-en">Structure</span>
+                </a>
+                <a href="administrations.html" class="nav-link">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
+                <a href="tasks.html" class="nav-link active">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="decisions.html" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: 3rem 0;">
+            <div class="container animate-fade-in">
+                <h1 class="hero-title">
+                    <span class="lang-ar">المهام الأولية</span>
+                    <span class="lang-en">Initial Tasks</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">خطوات التأسيس والانطلاق</span>
+                    <span class="lang-en">Foundation and Launch Steps</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            <div class="timeline">
+                
+                <!-- Task 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="task-card">
+                        <span class="task-status">
+                            <span class="lang-ar">مكتمل</span>
+                            <span class="lang-en">Completed</span>
+                        </span>
+                        <h3>
+                            <span class="lang-ar">تصميم الهوية البصرية</span>
+                            <span class="lang-en">Visual Identity Design</span>
+                        </h3>
+                        <p class="text-muted">
+                            <span class="lang-ar">تصميم الشعار الرسمي وتحديد ألوان الفريق لتعكس الهوية التقنية والتعليمية.</span>
+                            <span class="lang-en">Designing the official logo and defining team colors to reflect the technical and educational identity.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Task 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="task-card">
+                        <span class="task-status">
+                            <span class="lang-ar">مكتمل</span>
+                            <span class="lang-en">Completed</span>
+                        </span>
+                        <h3>
+                            <span class="lang-ar">إنشاء المنصات الرسمية</span>
+                            <span class="lang-en">Establishing Official Platforms</span>
+                        </h3>
+                        <p class="text-muted">
+                            <span class="lang-ar">إطلاق صفحة الفيسبوك الرسمية وتجهيز البنية التحتية البرمجية للفريق.</span>
+                            <span class="lang-en">Launching the official Facebook page and preparing the team's software infrastructure.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Task 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="task-card">
+                        <span class="task-status incomplete">
+                            <span class="lang-ar">غير مكتمل</span>
+                            <span class="lang-en">Incomplete</span>
+                        </span>
+                        <h3>
+                            <span class="lang-ar">التعريف بالفريق</span>
+                            <span class="lang-en">Team Introduction</span>
+                        </h3>
+                        <p class="text-muted">
+                            <span class="lang-ar">نشر الهوية والتعريف بأهداف ورؤية الفريق للمجتمع التعليمي.</span>
+                            <span class="lang-en">Publishing the identity and introducing the team's goals and vision to the educational community.</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EDU-TECH Qalyubia</h3>
+                    <p>
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
+                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="lang-ar">روابط سريعة</span>
+                        <span class="lang-en">Quick Links</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                        <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
+                    <span class="lang-en">&copy; 2024 EDU-TECH Qalyubia Team. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

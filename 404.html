@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة غير موجودة - 404</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .error-page {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
+            </a>
+            <nav class="nav-links">
+                <a href="tasks.html" class="nav-link">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="decisions.html" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+            </nav>
+             <div class="controls">
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="error-page animate-fade-in">
+            <div class="error-code">404</div>
+            <h1 style="margin-bottom: 1rem;">
+                <span class="lang-ar">عذراً، الصفحة غير موجودة</span>
+                <span class="lang-en">Sorry, Page Not Found</span>
+            </h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px;">
+                <span class="lang-ar">يبدو أنك تحاول الوصول إلى صفحة غير موجودة أو تم نقلها.</span>
+                <span class="lang-en">It seems you are trying to reach a page that does not exist or has been moved.</span>
+            </p>
+            <a href="index.html" class="btn btn-primary">
+                <span class="lang-ar">العودة للرئيسية</span>
+                <span class="lang-en">Back to Home</span>
+            </a>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

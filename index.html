@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU-TECH Qalyubia (ET)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="about.html" class="nav-link">
+                    <span class="lang-ar">عن الفريق</span>
+                    <span class="lang-en">About</span>
+                </a>
+                <a href="team.html" class="nav-link">
+                    <span class="lang-ar">الأعضاء</span>
+                    <span class="lang-en">Team</span>
+                </a>
+                <a href="structure.html" class="nav-link">
+                    <span class="lang-ar">الهيكل التنظيمي</span>
+                    <span class="lang-en">Structure</span>
+                </a>
+                <a href="administrations.html" class="nav-link">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
+                <a href="tasks.html" class="nav-link">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="decisions.html" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="hero">
+            <div class="container animate-fade-in">
+                <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia Logo" style="height: 150px; width: auto; margin: 0 auto 2rem; display: block; object-fit: contain;">
+                <h1 class="hero-title">
+                    <span class="lang-ar">EDU-TECH Qalyubia</span>
+                    <span class="lang-en">EDU-TECH Qalyubia</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">التحول الرقمي | الدعم التقني | الفرق الطلابية</span>
+                    <span class="lang-en">Digital Transformation | Technical Support | Student Teams</span>
+                </p>
+                <div class="hero-actions">
+                    <a href="about.html" class="btn btn-primary">
+                        <span class="lang-ar">التعرف على الفريق</span>
+                        <span class="lang-en">About the Team</span>
+                    </a>
+                    <a href="structure.html" class="btn btn-outline">
+                        <span class="lang-ar">الهيكل والتنظيم</span>
+                        <span class="lang-en">Organization Structure</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Brief About Section -->
+        <section class="features" style="background-color: var(--surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">من نحن</span>
+                        <span class="lang-en">Who We Are</span>
+                    </h2>
+                    <p>
+                        <span class="lang-ar">فريق تقني رسمي تابع لمديرية التربية والتعليم بالقليوبية</span>
+                        <span class="lang-en">Official technical team of Qalyubia Directorate of Education</span>
+                    </p>
+                </div>
+                <div class="grid-3">
+                    <div class="card" style="background-color: var(--bg-body);">
+                        <div class="icon-box">🎯</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">دورنا</span>
+                            <span class="lang-en">Our Role</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">دعم التحول الرقمي في المدارس والإدارات وتوفير حلول تقنية ذكية.</span>
+                            <span class="lang-en">Supporting digital transformation in schools and administrations and providing smart technical solutions.</span>
+                        </p>
+                    </div>
+                    <div class="card" style="background-color: var(--bg-body);">
+                        <div class="icon-box">👥</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">نخدم من</span>
+                            <span class="lang-en">Who We Serve</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">الطلاب، المعلمين، والإداريين في جميع المؤسسات التعليمية بالمحافظة.</span>
+                            <span class="lang-en">Students, teachers, and administrators in all educational institutions in the governorate.</span>
+                        </p>
+                    </div>
+                    <div class="card" style="background-color: var(--bg-body);">
+                        <div class="icon-box">🤝</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">هويتنا</span>
+                            <span class="lang-en">Our Identity</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">فريق طلابي يعمل تحت إشراف وتوجيه متخصص من قيادات المديرية.</span>
+                            <span class="lang-en">A student team working under specialized supervision and guidance from Directorate leaders.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Work Pillars -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">محاور العمل</span>
+                        <span class="lang-en">Focus Areas</span>
+                    </h2>
+                </div>
+                <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="card">
+                        <div class="icon-box">🛠️</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">الدعم الفني</span>
+                            <span class="lang-en">Technical Support</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">حل المشكلات التقنية وصيانة الأنظمة.</span>
+                            <span class="lang-en">Solving technical problems and system maintenance.</span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">💻</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">التحول الرقمي</span>
+                            <span class="lang-en">Digital Transformation</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">ميكنة العمليات الإدارية والتعليمية.</span>
+                            <span class="lang-en">Digitizing administrative and educational processes.</span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">👨‍🎓</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">الفرق الطلابية</span>
+                            <span class="lang-en">Student Teams</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">تمكين الطلاب من قيادة التغيير التقني.</span>
+                            <span class="lang-en">Empowering students to lead technical change.</span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">💡</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">تطوير المهارات</span>
+                            <span class="lang-en">Skill Development</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">تدريب وتأهيل الكوادر التقنية.</span>
+                            <span class="lang-en">Training and qualifying technical cadres.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Structure Preview -->
+        <section class="features" style="background-color: var(--surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">الهيكل العام</span>
+                        <span class="lang-en">Organizational Structure</span>
+                    </h2>
+                    <p>
+                        <span class="lang-ar">نظام عمل مؤسسي يضمن الجودة والاستمرارية</span>
+                        <span class="lang-en">Institutional work system ensuring quality and continuity</span>
+                    </p>
+                </div>
+                
+                <div style="max-width: 600px; margin: 0 auto 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="card" style="padding: 1rem; display: flex; align-items: center; gap: 1rem;">
+                        <span>1️⃣</span>
+                        <span>
+                            <span class="lang-ar">الإشراف العام (قيادات المديرية)</span>
+                            <span class="lang-en">General Supervision (Directorate Leaders)</span>
+                        </span>
+                    </div>
+                    <div class="card" style="padding: 1rem; display: flex; align-items: center; gap: 1rem;">
+                        <span>2️⃣</span>
+                        <span>
+                            <span class="lang-ar">المجلس الاستشاري</span>
+                            <span class="lang-en">Advisory Board</span>
+                        </span>
+                    </div>
+                    <div class="card" style="padding: 1rem; display: flex; align-items: center; gap: 1rem;">
+                        <span>3️⃣</span>
+                        <span>
+                            <span class="lang-ar">الإدارة التنفيذية</span>
+                            <span class="lang-en">Executive Management</span>
+                        </span>
+                    </div>
+                    <div class="card" style="padding: 1rem; display: flex; align-items: center; gap: 1rem;">
+                        <span>4️⃣</span>
+                        <span>
+                            <span class="lang-ar">فرق الإدارات التعليمية</span>
+                            <span class="lang-en">Educational Administration Teams</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="structure.html" class="btn btn-primary">
+                        <span class="lang-ar">عرض التفاصيل</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Educational Administrations -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">الإدارات التعليمية</span>
+                        <span class="lang-en">Educational Administrations</span>
+                    </h2>
+                    <p>
+                        <span class="lang-ar">شبكتنا تغطي جميع أنحاء المحافظة</span>
+                        <span class="lang-en">Our network covers the entire governorate</span>
+                    </p>
+                </div>
+                <div class="grid-3" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">إدارة بنها</span>
+                            <span class="lang-en">Benha Admin</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">إدارة طوخ</span>
+                            <span class="lang-en">Toukh Admin</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">إدارة قها</span>
+                            <span class="lang-en">Qaha Admin</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">غرب شبرا</span>
+                            <span class="lang-en">West Shubra</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">شرق شبرا</span>
+                            <span class="lang-en">East Shubra</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">القناطر الخيرية</span>
+                            <span class="lang-en">Qanater</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">قليوب</span>
+                            <span class="lang-en">Qalyub</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">الخانكة</span>
+                            <span class="lang-en">Khanka</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                     <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">العبور</span>
+                            <span class="lang-en">Obour</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                     <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">الخصوص</span>
+                            <span class="lang-en">Khusus</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                     <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">شبين القناطر</span>
+                            <span class="lang-en">Shebin El Qanater</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                     <div class="card" style="text-align: center;">
+                        <h4 class="card-title" style="font-size: 1rem;">
+                            <span class="lang-ar">كفر شكر</span>
+                            <span class="lang-en">Kafr Shukr</span>
+                        </h4>
+                        <span class="lang-ar" style="font-size: 0.8rem; color: var(--text-muted);">سيتم التفعيل قريباً</span>
+                        <span class="lang-en" style="font-size: 0.8rem; color: var(--text-muted);">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Initial Tasks -->
+        <section class="features" style="background-color: var(--surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">المهام الأولية</span>
+                        <span class="lang-en">Initial Tasks</span>
+                    </h2>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="icon-box">🎨</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">الهوية البصرية</span>
+                            <span class="lang-en">Visual Identity</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">تصميم الشعار وتوحيد المظهر العام للفريق.</span>
+                            <span class="lang-en">Designing the logo and unifying the team's general appearance.</span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">📢</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">المنصات الرسمية</span>
+                            <span class="lang-en">Official Platforms</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">إنشاء وتجهيز قنوات التواصل الرسمية.</span>
+                            <span class="lang-en">Creating and preparing official communication channels.</span>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">🚀</div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">التعريف بالفريق</span>
+                            <span class="lang-en">Team Introduction</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">نشر أهداف ورؤية الفريق للمجتمع التعليمي.</span>
+                            <span class="lang-en">Publishing the team's goals and vision to the educational community.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Contact Section -->
+        <section class="features" style="padding-top: 2rem;">
+            <div class="container" style="text-align: center;">
+                <div class="card" style="max-width: 600px; margin: 0 auto; border-color: var(--primary);">
+                    <h2 style="margin-bottom: 1rem; color: var(--primary);">
+                        <span class="lang-ar">تواصل معنا</span>
+                        <span class="lang-en">Contact Us</span>
+                    </h2>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                        <span class="lang-ar">تابع آخر أخبارنا وتحديثاتنا عبر صفحتنا الرسمية على فيسبوك</span>
+                        <span class="lang-en">Follow our latest news and updates via our official Facebook page</span>
+                    </p>
+                    <a href="https://www.facebook.com/ETQal" target="_blank" class="btn btn-primary">
+                        <span class="lang-ar">زيارة صفحة الفيسبوك</span>
+                        <span class="lang-en">Visit Facebook Page</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EDU-TECH Qalyubia</h3>
+                    <p>
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
+                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="lang-ar">روابط سريعة</span>
+                        <span class="lang-en">Quick Links</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                        <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
+                    <span class="lang-en">&copy; 2024 EDU-TECH Qalyubia Team. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
