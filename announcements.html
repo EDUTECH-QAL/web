@@ -3,83 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المهام - EDU-TECH Qalyubia</title>
+    <title>الإعلانات - EDU-TECH Qalyubia</title>
+    <meta name="description" content="الإعلانات والأخبار الرسمية لفريق EDU-TECH Qalyubia (ET) في محافظة القليوبية.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>    <style>
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 2rem;
-            width: 2px;
-            background: var(--border);
-        }
-        [dir="ltr"] .timeline::before {
-            right: auto;
-            left: 2rem;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-right: 4rem;
-        }
-        [dir="ltr"] .timeline-item {
-            padding-right: 0;
-            padding-left: 4rem;
-        }
-        .timeline-dot {
-            position: absolute;
-            right: 1.1rem;
-            top: 0.5rem;
-            width: 1.8rem;
-            height: 1.8rem;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 4px solid var(--surface);
-        }
-        [dir="ltr"] .timeline-dot {
-            right: auto;
-            left: 1.1rem;
-        }
-        .task-card {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-        }
-        .task-status {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.8rem;
-            background: #dcfce7;
-            color: #166534;
-            margin-bottom: 0.5rem;
-        }
-        [data-theme="dark"] .task-status {
-            background: #14532d;
-            color: #dcfce7;
-        }
-        .task-status.incomplete {
-            background: #fef9c3;
-            color: #854d0e;
-        }
-        [data-theme="dark"] .task-status.incomplete {
-            background: #422006;
-            color: #fef08a;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "الإعلانات - EDU-TECH Qalyubia",
+      "url": "https://edutech-qalyubia.study/announcements.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "EDU-TECH Qalyubia"
+      }
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -87,13 +29,11 @@
             <a href="index.html" class="logo">
                 <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
             </a>
-
             <div class="hamburger" id="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">
                     <span class="lang-ar">الرئيسية</span>
@@ -124,7 +64,7 @@
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>
                 </a>
-                <a href="tasks.html" class="nav-link active">
+                <a href="tasks.html" class="nav-link">
                     <span class="lang-ar">المهام</span>
                     <span class="lang-en">Tasks</span>
                 </a>
@@ -136,7 +76,6 @@
                     <span class="lang-ar">تواصل معنا</span>
                     <span class="lang-en">Contact</span>
                 </a>
-                
                 <div class="controls">
                     <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
                     <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
@@ -144,85 +83,92 @@
             </nav>
         </div>
     </header>
-
     <main>
         <section class="hero" style="padding: 3rem 0;">
             <div class="container animate-fade-in">
                 <h1 class="hero-title">
-                    <span class="lang-ar">المهام الأولية</span>
-                    <span class="lang-en">Initial Tasks</span>
+                    <span class="lang-ar">الإعلانات</span>
+                    <span class="lang-en">Announcements</span>
                 </h1>
                 <p class="hero-subtitle">
-                    <span class="lang-ar">خطوات التأسيس والانطلاق</span>
-                    <span class="lang-en">Foundation and Launch Steps</span>
+                    <span class="lang-ar">عرض الأخبار والإعلانات الرسمية لفريق EDU-TECH Qalyubia</span>
+                    <span class="lang-en">Official announcements and news for EDU-TECH Qalyubia</span>
                 </p>
             </div>
         </section>
-
         <section class="container animate-fade-in" style="padding-bottom: 4rem;">
-            <div class="timeline">
-                
-                <!-- Task 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="task-card">
-                        <span class="task-status">
-                            <span class="lang-ar">مكتمل</span>
-                            <span class="lang-en">Completed</span>
-                        </span>
-                        <h3>
-                            <span class="lang-ar">تصميم الهوية البصرية</span>
-                            <span class="lang-en">Visual Identity Design</span>
-                        </h3>
-                        <p class="text-muted">
-                            <span class="lang-ar">تصميم الشعار الرسمي وتحديد ألوان الفريق لتعكس الهوية التقنية والتعليمية.</span>
-                            <span class="lang-en">Designing the official logo and defining team colors to reflect the technical and educational identity.</span>
-                        </p>
-                    </div>
-                </div>
+            <div class="news-list">
+                <article class="news-card">
+                    <img src="assets/images/December_18_at_1_59_PM_.jpg" alt="قليوبية الرقمنة.. انطلاق قطار EDU-TECH" class="news-image">
+                    <div class="news-content">
+                        <h3 class="news-title">قليوبية الرقمنة.. انطلاق قطار EDU-TECH لترسيخ التحول الرقمي بصناعة عقول تكنولوجية واعدة</h3>
+                        <div class="news-meta">December 18 at 1:59 PM</div>
+                        <div class="news-body">
+قليوبية الرقمنة.. انطلاق قطار EDU-TECH لترسيخ التحول الرقمي بصناعة عقول تكنولوجية واعدة 
+تحت رعاية معالى وزير التربية والتعليم والتعليم الفنى محمد عبداللطيف. 
+ومعالى محافظ القليوبية المهندس أيمن عطية. 
+وإشراف الدكتورة هالة عبدالسلام، رئيس الإدارة المركزية للتعليم العام. 
+وتوجيهات الأستاذ مصطفى عبده مدير مديرية التربية والتعليم بالقليوبية. 
 
-                <!-- Task 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="task-card">
-                        <span class="task-status">
-                            <span class="lang-ar">مكتمل</span>
-                            <span class="lang-en">Completed</span>
-                        </span>
-                        <h3>
-                            <span class="lang-ar">إنشاء المنصات الرسمية</span>
-                            <span class="lang-en">Establishing Official Platforms</span>
-                        </h3>
-                        <p class="text-muted">
-                            <span class="lang-ar">إطلاق صفحة الفيسبوك الرسمية وتجهيز البنية التحتية البرمجية للفريق.</span>
-                            <span class="lang-en">Launching the official Facebook page and preparing the team's software infrastructure.</span>
-                        </p>
-                    </div>
-                </div>
+في خطوة استراتيجية نحو تعزيز التحول الرقمي وتطوير البنية التكنولوجية للتعليم، أطلقت مديرية التربية والتعليم بالقليوبية رسميًا "الفريق التقني للمديرية – EDU-TECH Qalyubia (ET)"، ليكون النواة المحركة للابتكار التقني في مدارس المحافظة. 
 
-                <!-- Task 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="task-card">
-                        <span class="task-status incomplete">
-                            <span class="lang-ar">غير مكتمل</span>
-                            <span class="lang-en">Incomplete</span>
-                        </span>
-                        <h3>
-                            <span class="lang-ar">التعريف بالفريق</span>
-                            <span class="lang-en">Team Introduction</span>
-                        </h3>
-                        <p class="text-muted">
-                            <span class="lang-ar">نشر الهوية والتعريف بأهداف ورؤية الفريق للمجتمع التعليمي.</span>
-                            <span class="lang-en">Publishing the identity and introducing the team's goals and vision to the educational community.</span>
-                        </p>
-                    </div>
-                </div>
+يأتي هذا الإطلاق بدعم ومتابعة مستمرة من 
+الأستاذ إبراهيم الصغير، مدير عام التعليم العام. 
 
+وبقيادة فنية للأستاذ أحمد بركات، موجه عام الكمبيوتر وتكنولوجيا المعلومات والمشرف العام على الفريق. 
+
+كما ينقسم فريق (ET) إلى جناحين متكاملين لضمان الكفاءة القصوى: 
+• القسم التنفيذي: تنفيذ المشروعات التقنية والدعم الفني الميداني. 
+• القسم الإداري: حوكمة الأعمال، إدارة الملفات، والتوثيق. 
+
+شهد اليوم اجتماعًا رفيع المستوى للمجلس الاستشاري للفريق بحضور مدير المديرية، والأستاذ أحمد بركات، وضم الاجتماع الأستاذ حسين يحيي حسين (المدير التنفيذي)، والأستاذ يوسف محمد حازم (المدير الإداري). 
+
+وأشاد الأستاذ مصطفى عبده بالفكرة واصفًا إياها بأنها نموذج مبتكر يستحق الدعم والتعميم، ومؤكدًا أن المديرية تدعم المبادرات التي تضع تعليم القليوبية على خارطة التميز الرقمي. 
+
+كما أوضح أن الخطة تستهدف تكوين أفرع تقنية في كل إدارة تعليمية بالمحافظة، بما يتماشى مع رؤية مصر 2030. 
+
+ويعمل فريق (ET) كجسر تقني يربط المدارس بالإدارات، ويوفر بيئة تعليمية ذكية ومتطورة. 
+
+"بفكرٍ مبدع وأيدٍ تقنية شابة.. فريق EDU-TECH Qalyubia يخطّ بالبرمجيات ملامح مستقبل تعليمي لا يعرف المستحيل."
+                        </div>
+                    </div>
+                    <div class="news-actions">
+                        <a href="news-qalyubia-digitization-et-launch.html" class="btn btn-primary">فتح الصفحة</a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="assets/images/Thursday,_December_25,_2025_at_8_12_PM.jpg" alt="التحول الرقمي في تعليم القليوبية يبدأ من هنا" class="news-image">
+                    <div class="news-content">
+                        <h3 class="news-title">🚀 التحول الرقمي في تعليم القليوبية يبدأ من هنا</h3>
+                        <div class="news-meta">Thursday, December 25, 2025 at 8:12 PM</div>
+                        <div class="news-body">
+تم تأسيس فريق EDU-TECH Qalyubia (ET) 
+الفريق التقني التابع لمديرية التربية والتعليم بمحافظة القليوبية، لدعم الابتكار والتحول الرقمي داخل المدارس. 
+
+🎯 نهدف إلى: 
+• دعم التحول الرقمي داخل العملية التعليمية 
+• تمكين الطلاب المتميزين تكنولوجيًا 
+• تقديم حلول تقنية تخدم التعليم بشكل عملي 
+
+🧩 نعمل وفق رؤية واضحة، وهيكل منظم، وإشراف تربوي وتقني متخصص. 
+
+📌 تابعونا لمتابعة كل ما يخص 
+فريق EDU-TECH Qalyubia (ET) داخل مدارس القليوبية 🇪🇬 
+
+#EDU_TECH_Qalyubia 
+#التحول_الرقمي 
+#التعليم_الذكي 
+#مديرية_التربية_والتعليم_بالقليوبية 
+#رؤية_مصر_2030
+                        </div>
+                    </div>
+                    <div class="news-actions">
+                        <a href="news-digital-transformation-qalyubia-starts-here.html" class="btn btn-primary">فتح الصفحة</a>
+                    </div>
+                </article>
             </div>
         </section>
     </main>
-
     <footer class="footer-modern">
         <div class="container">
             <div class="footer-top">
@@ -299,7 +245,6 @@
             </div>
         </div>
     </footer>
-
     <script src="assets/js/main.js"></script>
 </body>
 </html>

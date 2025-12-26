@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>    <style>
         .org-level {
             margin-bottom: 2rem;
             position: relative;
@@ -68,18 +69,27 @@
                     <span class="lang-ar">الرئيسية</span>
                     <span class="lang-en">Home</span>
                 </a>
-                <a href="about.html" class="nav-link">
-                    <span class="lang-ar">عن الفريق</span>
-                    <span class="lang-en">About</span>
-                </a>
-                <a href="team.html" class="nav-link">
-                    <span class="lang-ar">الأعضاء</span>
-                    <span class="lang-en">Team</span>
-                </a>
-                <a href="structure.html" class="nav-link active">
-                    <span class="lang-ar">الهيكل التنظيمي</span>
-                    <span class="lang-en">Structure</span>
-                </a>
+                <div class="dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle active">
+                        <span class="lang-ar">عن الفريق</span>
+                        <span class="lang-en">About Team</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">
+                            <span class="lang-ar">عن الفريق</span>
+                            <span class="lang-en">About Team</span>
+                        </a>
+                        <a href="team.html" class="dropdown-item">
+                            <span class="lang-ar">الأعضاء</span>
+                            <span class="lang-en">Members</span>
+                        </a>
+                        <a href="structure.html" class="dropdown-item">
+                            <span class="lang-ar">الهيكل التنظيمي</span>
+                            <span class="lang-en">Structure</span>
+                        </a>
+                    </div>
+                </div>
                 <a href="administrations.html" class="nav-link">
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>

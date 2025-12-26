@@ -8,42 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .supervisor-section {
-            background-color: var(--surface);
-            padding: 3rem 0;
-            border-radius: var(--radius);
-            margin-bottom: 3rem;
-            border: 1px solid var(--primary);
-        }
-        .team-img-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: var(--bg-body);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--text-muted);
-            border: 2px solid var(--border);
-        }
-        .team-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            border: 2px solid var(--border);
-            display: block;
-        }
-        .member-role {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>    <style>
+        /* CSS styles moved to style.css */
     </style>
 </head>
 <body>
@@ -64,18 +31,27 @@
                     <span class="lang-ar">الرئيسية</span>
                     <span class="lang-en">Home</span>
                 </a>
-                <a href="about.html" class="nav-link">
-                    <span class="lang-ar">عن الفريق</span>
-                    <span class="lang-en">About</span>
-                </a>
-                <a href="team.html" class="nav-link active">
-                    <span class="lang-ar">الأعضاء</span>
-                    <span class="lang-en">Team</span>
-                </a>
-                <a href="structure.html" class="nav-link">
-                    <span class="lang-ar">الهيكل التنظيمي</span>
-                    <span class="lang-en">Structure</span>
-                </a>
+                <div class="dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle active">
+                        <span class="lang-ar">عن الفريق</span>
+                        <span class="lang-en">About Team</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">
+                            <span class="lang-ar">عن الفريق</span>
+                            <span class="lang-en">About Team</span>
+                        </a>
+                        <a href="team.html" class="dropdown-item">
+                            <span class="lang-ar">الأعضاء</span>
+                            <span class="lang-en">Members</span>
+                        </a>
+                        <a href="structure.html" class="dropdown-item">
+                            <span class="lang-ar">الهيكل التنظيمي</span>
+                            <span class="lang-en">Structure</span>
+                        </a>
+                    </div>
+                </div>
                 <a href="administrations.html" class="nav-link">
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>
@@ -125,25 +101,29 @@
                     </div>
                     <div class="grid-3" style="justify-content: center;">
                         <!-- Supervisor 1 -->
-                        <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
-                            <img src="assets/images/mostafa-abdo.jpg" alt="Mr. Mostafa Abdo" class="team-img">
-                            <h3 class="card-title">
+                        <div class="supervisor-card">
+                            <div class="team-img-wrapper">
+                                <img src="assets/images/mostafa-abdo.jpg" alt="Mr. Mostafa Abdo" class="team-img">
+                            </div>
+                            <h3 class="team-name">
                                 <span class="lang-ar">أ / مصطفى عبده</span>
                                 <span class="lang-en">Mr. Mustafa Abdo</span>
                             </h3>
-                            <p class="member-role">
+                            <p class="team-role">
                                 <span class="lang-ar">مدير مديرية التربية والتعليم بالقليوبية</span>
                                 <span class="lang-en">Director of Qalyubia Directorate of Education</span>
                             </p>
                         </div>
                         <!-- Supervisor 2 -->
-                        <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
-                            <img src="assets/images/ahmed_barakat.jpeg" alt="Mr. Ahmed Barakat" class="team-img">
-                            <h3 class="card-title">
+                        <div class="supervisor-card">
+                            <div class="team-img-wrapper">
+                                <img src="assets/images/ahmed_barakat.jpeg" alt="Mr. Ahmed Barakat" class="team-img">
+                            </div>
+                            <h3 class="team-name">
                                 <span class="lang-ar">أ / أحمد بركات</span>
                                 <span class="lang-en">Mr. Ahmed Barakat</span>
                             </h3>
-                            <p class="member-role">
+                            <p class="team-role">
                                 <span class="lang-ar">موجّه عام الكمبيوتر وتكنولوجيا المعلومات</span>
                                 <span class="lang-en">General Supervisor of Computer and IT</span>
                             </p>
@@ -153,7 +133,7 @@
             </div>
 
             <!-- Advisory Board Section -->
-            <div class="container" style="margin-bottom: 3rem;">
+            <div class="container" style="margin-bottom: 4rem;">
                 <div class="section-header">
                     <h2>
                         <span class="lang-ar">المجلس الاستشاري</span>
@@ -166,37 +146,43 @@
                 </div>
                 <div class="grid-3">
                     <!-- Member 1 -->
-                    <div class="card" style="text-align: center;">
-                        <img src="assets/images/Hussein.jpg" alt="Hussein Yahya Hussein" class="team-img">
-                        <h3 class="card-title">
+                    <div class="team-card">
+                        <div class="team-img-wrapper">
+                            <img src="assets/images/Hussein.jpg" alt="Hussein Yahya Hussein" class="team-img">
+                        </div>
+                        <h3 class="team-name">
                             <span class="lang-ar">حسين يحيى حسين</span>
                             <span class="lang-en">Hussein Yahya Hussein</span>
                         </h3>
-                        <p class="member-role">
+                        <p class="team-role">
                             <span class="lang-ar">مدير تنفيذي</span>
                             <span class="lang-en">Executive Manager</span>
                         </p>
                     </div>
                     <!-- Member 2 -->
-                    <div class="card" style="text-align: center;">
-                        <img src="assets/images/Ahmed_mohamed.jpg" alt="Ahmed Mohamed Abdelalim" class="team-img">
-                        <h3 class="card-title">
+                    <div class="team-card">
+                        <div class="team-img-wrapper">
+                            <img src="assets/images/Ahmed_mohamed.jpg" alt="Ahmed Mohamed Abdelalim" class="team-img">
+                        </div>
+                        <h3 class="team-name">
                             <span class="lang-ar">أحمد محمد عبدالعليم</span>
                             <span class="lang-en">Ahmed Mohamed Abdelalim</span>
                         </h3>
-                        <p class="member-role">
+                        <p class="team-role">
                             <span class="lang-ar">مدير تنفيذي</span>
                             <span class="lang-en">Executive Manager</span>
                         </p>
                     </div>
                     <!-- Member 3 -->
-                    <div class="card" style="text-align: center;">
-                        <img src="assets/images/Yousef_mohamed.png" alt="Youssef Mohamed Hazem" class="team-img">
-                        <h3 class="card-title">
+                    <div class="team-card">
+                        <div class="team-img-wrapper">
+                            <img src="assets/images/Yousef_mohamed.png" alt="Youssef Mohamed Hazem" class="team-img">
+                        </div>
+                        <h3 class="team-name">
                             <span class="lang-ar">يوسف محمد حازم</span>
                             <span class="lang-en">Youssef Mohamed Hazem</span>
                         </h3>
-                        <p class="member-role">
+                        <p class="team-role">
                             <span class="lang-ar">مدير إداري</span>
                             <span class="lang-en">Administrative Manager</span>
                         </p>
@@ -229,28 +215,74 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer-modern">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>EDU-TECH Qalyubia</h3>
-                    <p>
-                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
-                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="assets/images/logo.png" alt="Logo" class="footer-logo">
+                        <span>
+                            <span class="lang-ar">EDU-TECH Qalyubia</span>
+                            <span class="lang-en">EDU-TECH Qalyubia</span>
+                        </span>
+                    </a>
+                    <p class="footer-desc">
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية. نسعى لتحقيق التحول الرقمي وتطوير البنية التحتية التكنولوجية.</span>
+                        <span class="lang-en">Official technical team of Qalyubia Directorate of Education. We aim to achieve digital transformation and develop technical infrastructure.</span>
                     </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ETQal/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/edutech_eg/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
+
+                <div class="footer-links-col">
                     <h3>
                         <span class="lang-ar">روابط سريعة</span>
                         <span class="lang-en">Quick Links</span>
                     </h3>
-                    <ul class="footer-links">
-                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                    <ul>
+                        <li><a href="index.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="about.html"><span class="lang-ar">عن الفريق</span><span class="lang-en">About Team</span></a></li>
+                        <li><a href="structure.html"><span class="lang-ar">الهيكل التنظيمي</span><span class="lang-en">Structure</span></a></li>
                         <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
                     </ul>
                 </div>
+
+                <div class="footer-links-col">
+                    <h3>
+                        <span class="lang-ar">الإدارات والمهام</span>
+                        <span class="lang-en">Admins & Tasks</span>
+                    </h3>
+                    <ul>
+                        <li><a href="administrations.html"><span class="lang-ar">الإدارات التعليمية</span><span class="lang-en">Administrations</span></a></li>
+                        <li><a href="tasks.html"><span class="lang-ar">المهام الحالية</span><span class="lang-en">Current Tasks</span></a></li>
+                        <li><a href="decisions.html"><span class="lang-ar">القرارات</span><span class="lang-en">Decisions</span></a></li>
+                        <li><a href="announcements.html"><span class="lang-ar">الإعلانات</span><span class="lang-en">Announcements</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-col">
+                    <h3>
+                        <span class="lang-ar">معلومات الإتصال</span>
+                        <span class="lang-en">Contact Info</span>
+                    </h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            <span>
+                                <span class="lang-ar">مديرية التربية والتعليم بالقليوبية, مصر</span>
+                                <span class="lang-en">Qalyubia Directorate of Education, Egypt</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope icon"></i>
+                            <a href="mailto:info@edutech-qalyubia.study">info@edutech-qalyubia.study</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
             <div class="footer-bottom">
                 <p>
                     <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>

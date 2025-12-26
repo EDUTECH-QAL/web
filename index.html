@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -27,18 +28,29 @@
                     <span class="lang-ar">الرئيسية</span>
                     <span class="lang-en">Home</span>
                 </a>
-                <a href="about.html" class="nav-link">
-                    <span class="lang-ar">عن الفريق</span>
-                    <span class="lang-en">About</span>
-                </a>
-                <a href="team.html" class="nav-link">
-                    <span class="lang-ar">الأعضاء</span>
-                    <span class="lang-en">Team</span>
-                </a>
-                <a href="structure.html" class="nav-link">
-                    <span class="lang-ar">الهيكل التنظيمي</span>
-                    <span class="lang-en">Structure</span>
-                </a>
+                
+                <div class="dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle">
+                        <span class="lang-ar">عن الفريق</span>
+                        <span class="lang-en">About Team</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">
+                            <span class="lang-ar">عن الفريق</span>
+                            <span class="lang-en">About Team</span>
+                        </a>
+                        <a href="team.html" class="dropdown-item">
+                            <span class="lang-ar">الأعضاء</span>
+                            <span class="lang-en">Members</span>
+                        </a>
+                        <a href="structure.html" class="dropdown-item">
+                            <span class="lang-ar">الهيكل التنظيمي</span>
+                            <span class="lang-en">Structure</span>
+                        </a>
+                    </div>
+                </div>
+
                 <a href="administrations.html" class="nav-link">
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>
@@ -137,6 +149,46 @@
                             <span class="lang-en">A student team working under specialized supervision and guidance from Directorate leaders.</span>
                         </p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container animate-fade-in">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">آخر الإعلانات</span>
+                        <span class="lang-en">Latest Announcements</span>
+                    </h2>
+                    <p>
+                        <span class="lang-ar">تحديثات رسمية تعكس نشاط الفريق التقني في القليوبية</span>
+                        <span class="lang-en">Official updates reflecting the team's activity in Qalyubia</span>
+                    </p>
+                </div>
+                <div class="news-list">
+                    <article class="news-card">
+                        <img src="assets/images/Thursday,_December_25,_2025_at_8_12_PM.jpg" alt="التحول الرقمي في تعليم القليوبية يبدأ من هنا" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title">🚀 التحول الرقمي في تعليم القليوبية يبدأ من هنا</h3>
+                            <div class="news-meta">Thursday, December 25, 2025 at 8:12 PM</div>
+                        </div>
+                        <div class="news-actions">
+                            <a href="news-digital-transformation-qalyubia-starts-here.html" class="btn btn-outline">فتح</a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="assets/images/December_18_at_1_59_PM_.jpg" alt="قليوبية الرقمنة.. انطلاق قطار EDU-TECH" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title">قليوبية الرقمنة.. انطلاق قطار EDU-TECH</h3>
+                            <div class="news-meta">December 18 at 1:59 PM</div>
+                        </div>
+                        <div class="news-actions">
+                            <a href="news-qalyubia-digitization-et-launch.html" class="btn btn-outline">فتح</a>
+                        </div>
+                    </article>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="announcements.html" class="btn btn-primary">عرض كل الإعلانات</a>
                 </div>
             </div>
         </section>
@@ -414,49 +466,77 @@
             </div>
         </section>
 
-        <!-- 7. Contact Section -->
-        <section class="features" style="padding-top: 2rem;">
-            <div class="container" style="text-align: center;">
-                <div class="card" style="max-width: 600px; margin: 0 auto; border-color: var(--primary);">
-                    <h2 style="margin-bottom: 1rem; color: var(--primary);">
-                        <span class="lang-ar">تواصل معنا</span>
-                        <span class="lang-en">Contact Us</span>
-                    </h2>
-                    <p style="margin-bottom: 2rem; color: var(--text-muted);">
-                        <span class="lang-ar">تابع آخر أخبارنا وتحديثاتنا عبر صفحتنا الرسمية على فيسبوك</span>
-                        <span class="lang-en">Follow our latest news and updates via our official Facebook page</span>
-                    </p>
-                    <a href="https://www.facebook.com/ETQal" target="_blank" class="btn btn-primary">
-                        <span class="lang-ar">زيارة صفحة الفيسبوك</span>
-                        <span class="lang-en">Visit Facebook Page</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- 7. Contact Section Removed (Redundant with Footer) -->
     </main>
 
-    <footer class="footer">
+    <footer class="footer-modern">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>EDU-TECH Qalyubia</h3>
-                    <p>
-                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
-                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="assets/images/logo.png" alt="Logo" class="footer-logo">
+                        <span>
+                            <span class="lang-ar">EDU-TECH Qalyubia</span>
+                            <span class="lang-en">EDU-TECH Qalyubia</span>
+                        </span>
+                    </a>
+                    <p class="footer-desc">
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية. نسعى لتحقيق التحول الرقمي وتطوير البنية التحتية التكنولوجية.</span>
+                        <span class="lang-en">Official technical team of Qalyubia Directorate of Education. We aim to achieve digital transformation and develop technical infrastructure.</span>
                     </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ETQal/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/edutech_eg/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
+
+                <div class="footer-links-col">
                     <h3>
                         <span class="lang-ar">روابط سريعة</span>
                         <span class="lang-en">Quick Links</span>
                     </h3>
-                    <ul class="footer-links">
-                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                    <ul>
+                        <li><a href="index.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="about.html"><span class="lang-ar">عن الفريق</span><span class="lang-en">About Team</span></a></li>
+                        <li><a href="structure.html"><span class="lang-ar">الهيكل التنظيمي</span><span class="lang-en">Structure</span></a></li>
                         <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
                     </ul>
                 </div>
+
+                <div class="footer-links-col">
+                    <h3>
+                        <span class="lang-ar">الإدارات والمهام</span>
+                        <span class="lang-en">Admins & Tasks</span>
+                    </h3>
+                    <ul>
+                        <li><a href="administrations.html"><span class="lang-ar">الإدارات التعليمية</span><span class="lang-en">Administrations</span></a></li>
+                        <li><a href="tasks.html"><span class="lang-ar">المهام الحالية</span><span class="lang-en">Current Tasks</span></a></li>
+                        <li><a href="decisions.html"><span class="lang-ar">القرارات</span><span class="lang-en">Decisions</span></a></li>
+                        <li><a href="announcements.html"><span class="lang-ar">الإعلانات</span><span class="lang-en">Announcements</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-col">
+                    <h3>
+                        <span class="lang-ar">معلومات الإتصال</span>
+                        <span class="lang-en">Contact Info</span>
+                    </h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            <span>
+                                <span class="lang-ar">مديرية التربية والتعليم بالقليوبية, مصر</span>
+                                <span class="lang-en">Qalyubia Directorate of Education, Egypt</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope icon"></i>
+                            <a href="mailto:info@edutech-qalyubia.study">info@edutech-qalyubia.study</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
             <div class="footer-bottom">
                 <p>
                     <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>

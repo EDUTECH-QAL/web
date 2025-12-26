@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.getElementById('nav-menu');
     const html = document.documentElement;
     const body = document.body;
+    const overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
 
     // State
     let currentTheme = localStorage.getItem('theme') || 'light';
@@ -34,8 +37,67 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.contains('active');
+            overlay.classList.toggle('active', isOpen);
+            body.style.overflow = isOpen ? 'hidden' : '';
         });
     }
+    overlay.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+    });
+    // Close menu when clicking a link (mobile)
+    if (navMenu) {
+        navMenu.addEventListener('click', (e) => {
+            const target = e.target.closest('a');
+            const dropdownToggle = e.target.closest('.dropdown-toggle');
+            
+            // If it's a dropdown toggle on mobile, don't close the menu
+            if (dropdownToggle && window.innerWidth <= 768) {
+                return;
+            }
+
+            if (target && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    }
+
+    // Dropdown Logic for Mobile
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns if any (optional, but good for focus)
+                    dropdowns.forEach(other => {
+                        if (other !== dropdown) other.classList.remove('active');
+                    });
+                    
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
 
     // Functions
     function applyTheme(theme) {
