@@ -6,48 +6,216 @@
     <title>الهيكل التنظيمي - EDU-TECH Qalyubia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>    <style>
-        .org-level {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .org-level::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -2rem;
-            width: 2px;
-            height: 2rem;
-            background-color: var(--border);
-            transform: translateX(-50%);
-        }
-        .org-level:last-child::after {
-            display: none;
-        }
-        .level-title {
+    <style>
+        /* Page Specific Styles */
+        .official-note {
+            background-color: var(--surface);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            font-weight: 600;
             text-align: center;
+        }
+        
+        [dir="rtl"] .official-note {
+            border-left: none;
+            border-right: 4px solid var(--primary);
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .member-card {
+            background: var(--bg-body);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-img-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 2rem auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            padding: 3px;
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .member-name {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: var(--text-muted);
+            font-size: 0.95rem;
             margin-bottom: 1rem;
+        }
+
+        .tasks-accordion {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            background: var(--surface);
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: var(--bg-body);
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 1.5rem;
+            max-height: 500px; /* Arbitrary large height */
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .dept-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .dept-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .dept-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .dept-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .dept-list {
+            text-align: right;
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        [dir="ltr"] .dept-list {
+            text-align: left;
+        }
+
+        .dept-list li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--text-muted);
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        .org-card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: var(--shadow);
+
+        [dir="ltr"] .dept-list li {
+            padding-right: 0;
+            padding-left: 1.5rem;
         }
-        .org-card h3 {
+
+        .dept-list li::before {
+            content: "•";
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+
+        [dir="ltr"] .dept-list li::before {
+            right: auto;
+            left: 0;
+        }
+
+        .general-notes {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] .general-notes {
+            background: #451a03;
+            border-color: #78350f;
+        }
+
+        .note-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .note-icon {
+            color: var(--secondary);
         }
     </style>
 </head>
@@ -94,7 +262,6 @@
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>
                 </a>
-
                 <a href="tasks.html" class="nav-link">
                     <span class="lang-ar">المهام</span>
                     <span class="lang-en">Tasks</span>
@@ -117,112 +284,454 @@
     </header>
 
     <main>
-        <section class="hero" style="padding: 3rem 0;">
+        <!-- Official Approval Note -->
+        <div class="container animate-fade-in">
+            <div class="official-note">
+                <span class="lang-ar">تم اعتماد هذا الهيكل التنظيمي وفقًا للقرار الداخلي رقم (1) لسنة 2025 الصادر بتاريخ 23 ديسمبر 2025.</span>
+                <span class="lang-en">This organizational structure has been officially approved according to Internal Decision No. (1) of 2025, issued on December 23, 2025.</span>
+            </div>
+        </div>
+
+        <!-- 1. Hero Section -->
+        <section class="hero" style="padding: 2rem 0 4rem;">
             <div class="container animate-fade-in">
                 <h1 class="hero-title">
-                    <span class="lang-ar">الهيكل العام للفريق</span>
-                    <span class="lang-en">Organizational Overview</span>
+                    <span class="lang-ar">الهيكل التنظيمي – EDU-TECH Qalyubia (ET)</span>
+                    <span class="lang-en">Organizational Structure – EDU-TECH Qalyubia (ET)</span>
                 </h1>
                 <p class="hero-subtitle">
-                    <span class="lang-ar">فريق طلابي يعمل تحت إشراف وتوجيه متخصص</span>
-                    <span class="lang-en">A student team working under specialized supervision and guidance</span>
+                    <span class="lang-ar">يوضح الهيكل الإداري والتنفيذي المعتمد للفريق المركزي وأقسامه ومهامه.</span>
+                    <span class="lang-en">Displays the officially approved administrative and executive structure of the Central Team and its departments.</span>
                 </p>
             </div>
         </section>
 
+        <!-- 2. Advisory Council -->
         <section class="container animate-fade-in" style="padding-bottom: 4rem;">
-            
-            <!-- Level 1 -->
-            <div class="org-level">
-                <div class="level-title">
-                    <span class="lang-ar">المستوى الاستراتيجي</span>
-                    <span class="lang-en">Strategic Level</span>
-                </div>
-                <div class="org-card">
-                    <h3>
-                        <span class="lang-ar">المجلس الاستشاري</span>
-                        <span class="lang-en">Advisory Board</span>
+            <div class="section-title-wrapper">
+                <h2>
+                    <span class="lang-ar">المجلس الاستشاري</span>
+                    <span class="lang-en">Advisory Council</span>
+                </h2>
+                <p class="text-muted">
+                    <span class="lang-ar">المرجع الأعلى لاعتماد أي قرار أو خطة تنفيذية داخل الفريق</span>
+                    <span class="lang-en">The highest authority for approving any decision or executive plan within the team</span>
+                </p>
+            </div>
+
+            <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <!-- Member 1 -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <img src="assets/images/Yousef_mohamed.png" alt="Youssef Mohamed Hazem" class="member-img">
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">يوسف محمد حازم</span>
+                        <span class="lang-en">Youssef Mohamed Hazem</span>
                     </h3>
-                    <p>
-                        <span class="lang-ar">جهة اتخاذ القرار والإشراف العام (قيادات المديرية)</span>
-                        <span class="lang-en">Decision-making and general supervision authority (Directorate Leadership)</span>
+                    <p class="member-role">
+                        <span class="lang-ar">المدير الإداري</span>
+                        <span class="lang-en">Administrative Manager</span>
+                    </p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <!-- Placeholder for Ahmed Abdelraouf Samir -->
+                        <div style="width:100%; height:100%; background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:3rem; color:var(--text-muted);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">أحمد عبدالرؤوف سمير</span>
+                        <span class="lang-en">Ahmed Abdelraouf Samir</span>
+                    </h3>
+                    <p class="member-role">
+                        <span class="lang-ar">مساعد المدير الإداري</span>
+                        <span class="lang-en">Assistant Administrative Manager</span>
+                    </p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <img src="assets/images/Hussein.jpg" alt="Hussein Yahya Hussein" class="member-img">
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">حسين يحيى حسين</span>
+                        <span class="lang-en">Hussein Yahya Hussein</span>
+                    </h3>
+                    <p class="member-role">
+                        <span class="lang-ar">المدير التنفيذي</span>
+                        <span class="lang-en">Executive Director</span>
+                    </p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <img src="assets/images/Ahmed_mohamed.jpg" alt="Ahmed Mohamed Abdelalim" class="member-img">
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">أحمد محمد عبدالعليم</span>
+                        <span class="lang-en">Ahmed Mohamed Abdelalim</span>
+                    </h3>
+                    <p class="member-role">
+                        <span class="lang-ar">مساعد المدير التنفيذي</span>
+                        <span class="lang-en">Assistant Executive Director</span>
                     </p>
                 </div>
             </div>
 
-            <!-- Level 2 -->
-            <div class="org-level">
-                <div class="level-title">
-                    <span class="lang-ar">المستوى التنفيذي</span>
-                    <span class="lang-en">Executive Level</span>
-                </div>
-                <div class="grid-3" style="max-width: 900px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                    <div class="org-card" style="width: 100%;">
-                        <h3>
-                            <span class="lang-ar">الإدارة التنفيذية</span>
-                            <span class="lang-en">Executive Management</span>
-                        </h3>
-                        <p>
-                            <span class="lang-ar">قيادة الفرق التقنية وتوزيع المهام</span>
-                            <span class="lang-en">Leading technical teams and task distribution</span>
-                        </p>
+            <!-- Tasks Accordion -->
+            <div class="tasks-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>
+                            <span class="lang-ar">مهام المجلس الاستشاري</span>
+                            <span class="lang-en">Advisory Council Tasks</span>
+                        </span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
-                    <div class="org-card" style="width: 100%;">
-                        <h3>
-                            <span class="lang-ar">الإدارة الإدارية</span>
-                            <span class="lang-en">Administrative Management</span>
-                        </h3>
-                        <p>
-                            <span class="lang-ar">التنسيق والمتابعة والعلاقات العامة</span>
-                            <span class="lang-en">Coordination, follow-up, and public relations</span>
-                        </p>
+                    <div class="accordion-content">
+                        <ul class="dept-list" style="margin: 0;">
+                            <li>
+                                <span class="lang-ar">اتخاذ القرارات الاستراتيجية للفريق المركزي وجميع الأقسام.</span>
+                                <span class="lang-en">Making strategic decisions for the Central Team and all departments.</span>
+                            </li>
+                            <li>
+                                <span class="lang-ar">اعتماد خطط العمل المقدمة من الأقسام المختلفة.</span>
+                                <span class="lang-en">Approving work plans submitted by different departments.</span>
+                            </li>
+                            <li>
+                                <span class="lang-ar">إصدار التعليمات والتوجيهات لجميع الأقسام والكوادر.</span>
+                                <span class="lang-en">Issuing instructions and directives to all departments and staff.</span>
+                            </li>
+                            <li>
+                                <span class="lang-ar">مراقبة الأداء العام وضمان تطبيق السياسات.</span>
+                                <span class="lang-en">Monitoring overall performance and ensuring policy implementation.</span>
+                            </li>
+                            <li>
+                                <span class="lang-ar">متابعة التوسع المستقبلي على مستوى المحافظة والجمهورية.</span>
+                                <span class="lang-en">Following up on future expansion at the governorate and republic levels.</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Level 3 -->
-            <div class="org-level">
-                <div class="level-title">
-                    <span class="lang-ar">المستوى التشغيلي</span>
-                    <span class="lang-en">Operational Level</span>
-                </div>
-                <div class="org-card">
-                    <h3>
-                        <span class="lang-ar">فرق الإدارات التعليمية</span>
-                        <span class="lang-en">Educational Administration Teams</span>
+        <!-- 3. Administrative Department -->
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            <div class="section-title-wrapper">
+                <h2>
+                    <span class="lang-ar">القسم الإداري</span>
+                    <span class="lang-en">Administrative Department</span>
+                </h2>
+                <p class="text-muted">
+                    <span class="lang-ar">10 أعضاء أو أكثر</span>
+                    <span class="lang-en">10 Members or more</span>
+                </p>
+            </div>
+
+            <div class="grid-3" style="gap: 2rem;">
+                <!-- Dept 1 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-archive"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم الأرشيف والبيانات</span>
+                        <span class="lang-en">Archives & Data Dept</span>
                     </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(2 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(2 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">حفظ وتنظيم بيانات أعضاء الفريق المركزي.</span>
+                            <span class="lang-en">Organizing and archiving Central Team member data.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">متابعة المستندات والتقارير والشكاوى والتقييمات.</span>
+                            <span class="lang-en">Tracking documents, reports, complaints, and evaluations.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إعداد وإرسال تقارير دورية (أسبوعية / شهرية) للمجلس الاستشاري.</span>
+                            <span class="lang-en">Preparing and sending periodic reports (weekly/monthly) to the Advisory Council.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dept 2 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم التقييم والمتابعة</span>
+                        <span class="lang-en">Evaluation & Follow-up Dept</span>
+                    </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(2 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(2 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">الإشراف على تنفيذ خطط العمل المعتمدة.</span>
+                            <span class="lang-en">Supervising the implementation of approved work plans.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">متابعة أداء الأقسام المختلفة ومدى الالتزام بالسياسات.</span>
+                            <span class="lang-en">Monitoring departmental performance and policy compliance.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إعداد تقارير تقييمية دورية عن الأداء.</span>
+                            <span class="lang-en">Preparing periodic performance evaluation reports.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dept 3 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-pen-nib"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم إعداد وإنشاء محتوى التدريب</span>
+                        <span class="lang-en">Training Content Creation Dept</span>
+                    </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(3 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(3 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">إعداد المحتوى التدريبي للورش والمبادرات.</span>
+                            <span class="lang-en">Preparing training content for workshops and initiatives.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">تجهيز المواد التدريبية للمدربين.</span>
+                            <span class="lang-en">Preparing training materials for trainers.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">مراجعة وضمان جودة المحتوى قبل اعتماده.</span>
+                            <span class="lang-en">Reviewing and ensuring content quality before approval.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Executive Department -->
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            <div class="section-title-wrapper">
+                <h2>
+                    <span class="lang-ar">القسم التنفيذي</span>
+                    <span class="lang-en">Executive Department</span>
+                </h2>
+                <p class="text-muted">
+                    <span class="lang-ar">10 أعضاء أو أكثر</span>
+                    <span class="lang-en">10 Members or more</span>
+                </p>
+            </div>
+
+            <div class="grid-3" style="gap: 2rem;">
+                <!-- Dept 1 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم التدريب</span>
+                        <span class="lang-en">Training Dept</span>
+                    </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(3 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(3 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">تنفيذ البرامج والورش التدريبية المعتمدة.</span>
+                            <span class="lang-en">Executing approved training programs and workshops.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">متابعة الحضور والغياب.</span>
+                            <span class="lang-en">Monitoring attendance and absence.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">تطوير المهارات الفنية والتقنية للأعضاء.</span>
+                            <span class="lang-en">Developing technical and soft skills for members.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إعداد تقارير دورية عن مستوى التقدم.</span>
+                            <span class="lang-en">Preparing periodic progress reports.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dept 2 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-camera"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم الميديا والتصوير</span>
+                        <span class="lang-en">Media & Photography Dept</span>
+                    </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(3 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(3 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">تصوير وتوثيق جميع الأنشطة والفعاليات.</span>
+                            <span class="lang-en">Photographing and documenting all activities and events.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إجراء التعديلات الفنية على الصور والفيديوهات.</span>
+                            <span class="lang-en">Performing technical edits on photos and videos.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إدارة صفحات التواصل الاجتماعي.</span>
+                            <span class="lang-en">Managing social media pages.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إعداد تقارير أداء إعلامي دورية.</span>
+                            <span class="lang-en">Preparing periodic media performance reports.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Dept 3 -->
+                <div class="dept-card">
+                    <div class="dept-icon"><i class="fas fa-code"></i></div>
+                    <h3 class="dept-title">
+                        <span class="lang-ar">قسم إنشاء المشاريع والبرمجيات</span>
+                        <span class="lang-en">Projects & Software Dept</span>
+                    </h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        <span class="lang-ar">(4 أعضاء أو أكثر)</span>
+                        <span class="lang-en">(4 Members or more)</span>
+                    </p>
+                    <ul class="dept-list">
+                        <li>
+                            <span class="lang-ar">تطوير المشاريع والأنظمة التكنولوجية الخاصة بالفريق.</span>
+                            <span class="lang-en">Developing technological projects and systems for the team.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إدارة الموقع الإلكتروني والأنظمة الرقمية.</span>
+                            <span class="lang-en">Managing the website and digital systems.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">دعم باقي الأقسام تقنيًا.</span>
+                            <span class="lang-en">Providing technical support to other departments.</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">إعداد تقارير دورية عن تقدم المشاريع.</span>
+                            <span class="lang-en">Preparing periodic reports on project progress.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. General Notes -->
+        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+            <div class="general-notes">
+                <div class="section-title-wrapper" style="margin-bottom: 2rem; text-align: left;">
+                    <h3 style="margin-bottom: 0;">
+                        <span class="lang-ar">ملاحظات عامة</span>
+                        <span class="lang-en">General Notes</span>
+                    </h3>
+                </div>
+                
+                <div class="note-item">
+                    <i class="fas fa-info-circle note-icon"></i>
                     <p>
-                        <span class="lang-ar">الفرق الميدانية في كل إدارة تعليمية بالمحافظة</span>
-                        <span class="lang-en">Field teams in every educational administration in the governorate</span>
+                        <span class="lang-ar">جميع الأقسام تتبع المجلس الاستشاري مباشرة.</span>
+                        <span class="lang-en">All departments report directly to the Advisory Council.</span>
+                    </p>
+                </div>
+                <div class="note-item">
+                    <i class="fas fa-calendar-check note-icon"></i>
+                    <p>
+                        <span class="lang-ar">الالتزام بإرسال تقارير دورية أسبوعية أو شهرية.</span>
+                        <span class="lang-en">Commitment to sending periodic weekly or monthly reports.</span>
+                    </p>
+                </div>
+                <div class="note-item">
+                    <i class="fas fa-expand-arrows-alt note-icon"></i>
+                    <p>
+                        <span class="lang-ar">الهيكل التنظيمي قابل للتوسع مستقبلًا ليشمل جميع الإدارات التعليمية بمحافظة القليوبية، ثم التوسع على مستوى الجمهورية.</span>
+                        <span class="lang-en">The organizational structure is scalable to include all educational administrations in Qalyubia Governorate, and then expand to the republic level.</span>
                     </p>
                 </div>
             </div>
-
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer-modern">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>EDU-TECH Qalyubia</h3>
-                    <p>
-                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية.</span>
-                        <span class="lang-en">The official technical team of Qalyubia Directorate of Education.</span>
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="assets/images/logo.png" alt="Logo" class="footer-logo">
+                        <span>
+                            <span class="lang-ar">EDU-TECH Qalyubia</span>
+                            <span class="lang-en">EDU-TECH Qalyubia</span>
+                        </span>
+                    </a>
+                    <p class="footer-desc">
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية. نسعى لتحقيق التحول الرقمي وتطوير البنية التحتية التكنولوجية.</span>
+                        <span class="lang-en">Official technical team of Qalyubia Directorate of Education. We aim to achieve digital transformation and develop technical infrastructure.</span>
                     </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ETQal/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/edutech_eg/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@EDUTEC-egy" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
+
+                <div class="footer-links-col">
                     <h3>
                         <span class="lang-ar">روابط سريعة</span>
                         <span class="lang-en">Quick Links</span>
                     </h3>
-                    <ul class="footer-links">
-                        <li><a href="about.html"><span class="lang-ar">من نحن</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="team.html"><span class="lang-ar">الفريق</span><span class="lang-en">Team</span></a></li>
+                    <ul>
+                        <li><a href="index.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="about.html"><span class="lang-ar">عن الفريق</span><span class="lang-en">About Team</span></a></li>
+                        <li><a href="structure.html"><span class="lang-ar">الهيكل التنظيمي</span><span class="lang-en">Structure</span></a></li>
                         <li><a href="contact.html"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
                     </ul>
                 </div>
+
+                <div class="footer-links-col">
+                    <h3>
+                        <span class="lang-ar">الإدارات والمهام</span>
+                        <span class="lang-en">Admins & Tasks</span>
+                    </h3>
+                    <ul>
+                        <li><a href="administrations.html"><span class="lang-ar">الإدارات التعليمية</span><span class="lang-en">Administrations</span></a></li>
+                        <li><a href="tasks.html"><span class="lang-ar">المهام الحالية</span><span class="lang-en">Current Tasks</span></a></li>
+                        <li><a href="decisions.html"><span class="lang-ar">القرارات</span><span class="lang-en">Decisions</span></a></li>
+                        <li><a href="announcements.html"><span class="lang-ar">الإعلانات</span><span class="lang-en">Announcements</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-col">
+                    <h3>
+                        <span class="lang-ar">معلومات الإتصال</span>
+                        <span class="lang-en">Contact Info</span>
+                    </h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            <span>
+                                <span class="lang-ar">مديرية التربية والتعليم بالقليوبية, مصر</span>
+                                <span class="lang-en">Qalyubia Directorate of Education, Egypt</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope icon"></i>
+                            <a href="mailto:info@edutech-qalyubia.study">info@edutech-qalyubia.study</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
             <div class="footer-bottom">
                 <p>
                     <span class="lang-ar">&copy; 2024 فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
@@ -233,5 +742,11 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

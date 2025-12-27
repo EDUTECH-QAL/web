@@ -3,28 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة غير موجودة - 404</title>
+    <title>منصات الفريق - EDU-TECH Qalyubia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .error-page {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .error-code {
-            font-size: 6rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -32,7 +16,19 @@
             <a href="index.html" class="logo">
                 <img src="assets/images/logo.png" alt="EDU-TECH Qalyubia">
             </a>
-            <nav class="nav-links">
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                
                 <div class="dropdown">
                     <a href="about.html" class="nav-link dropdown-toggle">
                         <span class="lang-ar">عن الفريق</span>
@@ -54,6 +50,11 @@
                         </a>
                     </div>
                 </div>
+
+                <a href="administrations.html" class="nav-link">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
                 <a href="tasks.html" class="nav-link">
                     <span class="lang-ar">المهام</span>
                     <span class="lang-en">Tasks</span>
@@ -62,29 +63,117 @@
                     <span class="lang-ar">القرارات</span>
                     <span class="lang-en">Decisions</span>
                 </a>
+                <a href="contact.html" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
             </nav>
-             <div class="controls">
-                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
-            </div>
         </div>
     </header>
 
-    <main class="container">
-        <div class="error-page animate-fade-in">
-            <div class="error-code">404</div>
-            <h1 style="margin-bottom: 1rem;">
-                <span class="lang-ar">عذراً، الصفحة غير موجودة</span>
-                <span class="lang-en">Sorry, Page Not Found</span>
-            </h1>
-            <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px;">
-                <span class="lang-ar">يبدو أنك تحاول الوصول إلى صفحة غير موجودة أو تم نقلها.</span>
-                <span class="lang-en">It seems you are trying to reach a page that does not exist or has been moved.</span>
-            </p>
-            <a href="index.html" class="btn btn-primary">
-                <span class="lang-ar">العودة للرئيسية</span>
-                <span class="lang-en">Back to Home</span>
-            </a>
-        </div>
+    <main>
+        <section class="hero">
+            <div class="container animate-fade-in">
+                <h1 class="hero-title">
+                    <span class="lang-ar">منصات الفريق</span>
+                    <span class="lang-en">Team Platforms</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">تابعنا على منصاتنا الرسمية وتواصل معنا مباشرة</span>
+                    <span class="lang-en">Follow our official platforms and reach us directly</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="features" style="background-color: var(--surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>
+                        <span class="lang-ar">المنصات الرسمية</span>
+                        <span class="lang-en">Official Platforms</span>
+                    </h2>
+                    <p>
+                        <span class="lang-ar">نشارك تحديثاتنا وأنشطتنا عبر هذه المنصات</span>
+                        <span class="lang-en">We share updates and activities across these platforms</span>
+                    </p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="icon-box"><i class="fab fa-facebook-f"></i></div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">فيسبوك</span>
+                            <span class="lang-en">Facebook</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">الأخبار الرسمية والتحديثات العامة.</span>
+                            <span class="lang-en">Official news and general updates.</span>
+                        </p>
+                        <div class="news-actions">
+                            <a href="https://www.facebook.com/ETQal/" target="_blank" class="btn btn-primary">
+                                <span class="lang-ar">فتح الصفحة</span>
+                                <span class="lang-en">Open Page</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">إنستجرام</span>
+                            <span class="lang-en">Instagram</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">لقطات من نشاط الفريق وأحداثه.</span>
+                            <span class="lang-en">Snapshots from team activities and events.</span>
+                        </p>
+                        <div class="news-actions">
+                            <a href="https://www.instagram.com/edutech_eg/" target="_blank" class="btn btn-primary">
+                                <span class="lang-ar">فتح الصفحة</span>
+                                <span class="lang-en">Open Page</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box"><i class="fab fa-youtube"></i></div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">يوتيوب</span>
+                            <span class="lang-en">YouTube</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">فيديوهات تعليمية وتغطية فعالياتنا.</span>
+                            <span class="lang-en">Educational videos and coverage of our events.</span>
+                        </p>
+                        <div class="news-actions">
+                            <a href="https://www.youtube.com/@EDUTEC-egy" target="_blank" class="btn btn-primary">
+                                <span class="lang-ar">فتح القناة</span>
+                                <span class="lang-en">Open Channel</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <h3 class="card-title">
+                            <span class="lang-ar">البريد الإلكتروني</span>
+                            <span class="lang-en">Email</span>
+                        </h3>
+                        <p class="card-text">
+                            <span class="lang-ar">تواصل رسمي ومراسلات إدارية.</span>
+                            <span class="lang-en">Official communication and administrative correspondence.</span>
+                        </p>
+                        <div class="news-actions">
+                            <a href="mailto:info@edutech-qalyubia.study" class="btn btn-outline">
+                                <span class="lang-ar">إرسال بريد</span>
+                                <span class="lang-en">Send Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer-modern">
@@ -164,6 +253,7 @@
             </div>
         </div>
     </footer>
+
     <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -168,10 +168,11 @@ img {
     height: 2px;
     background-color: var(--primary);
     transition: width 0.3s ease;
-    [dir="rtl"] & {
-        left: auto;
-        right: 0;
-    }
+}
+
+[dir="rtl"] .nav-link::after {
+    left: auto;
+    right: 0;
 }
 
 .nav-link:hover::after, .nav-link.active::after {
@@ -544,40 +545,102 @@ img {
 /* News */
 .news-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
 }
 
 .news-card {
     background-color: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 1.5rem;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 .news-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+}
+
+.news-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover::after {
+    transform: scaleX(1);
+}
+
+.news-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
 }
 
 .news-image {
     width: 100%;
-    aspect-ratio: 16/9;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.6s ease;
     display: block;
 }
 
+.news-card:hover .news-image {
+    transform: scale(1.1);
+}
+
+.news-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.6));
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
 .news-content {
-    padding: 1.25rem 1.5rem;
+    padding: 1.75rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: inline-block;
 }
 
 .news-title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--text-main);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.news-card:hover .news-title {
+    color: var(--primary);
 }
 
 .news-meta {
@@ -586,30 +649,57 @@ img {
     gap: 0.5rem;
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin-bottom: 0.75rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
 }
 
-.news-body {
-    color: var(--text-main);
-    white-space: pre-line;
-    font-size: 1rem;
+.news-meta i {
+    color: var(--secondary);
 }
 
 .news-actions {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border);
+    padding: 0 1.75rem 1.75rem;
     display: flex;
-    gap: 0.75rem;
-    justify-content: center;
+    justify-content: flex-end;
+}
+
+.btn-news {
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-news:hover {
+    gap: 0.8rem;
+    color: var(--secondary);
 }
 
 /* Modern Footer */
 .footer-modern {
     background-color: var(--footer-bg);
+    background-image: linear-gradient(to bottom, var(--footer-bg), #020617);
     color: var(--footer-text);
     padding: 5rem 0 2rem;
     margin-top: auto;
     font-size: 0.95rem;
+    position: relative;
+}
+
+.footer-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
 }
 
 .footer-top {
@@ -668,8 +758,9 @@ img {
 
 .social-links a:hover {
     background-color: var(--primary);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
     border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(2, 132, 199, 0.3);
 }
 
 .footer-links-col h3,
@@ -742,11 +833,18 @@ img {
 .contact-list a {
     color: var(--footer-muted);
     border-bottom: 1px dashed rgba(255,255,255,0.2);
+    display: inline-block;
+    transition: all 0.3s ease;
 }
 
 .contact-list a:hover {
     color: var(--primary);
     border-color: var(--primary);
+    transform: translateX(-5px);
+}
+
+[dir="ltr"] .contact-list a:hover {
+    transform: translateX(5px);
 }
 
 .footer-bottom {
@@ -950,10 +1048,11 @@ img {
     height: 100%;
     background: var(--primary);
     transition: width 0.3s ease;
-    [dir="ltr"] & {
-        right: auto;
-        left: 0;
-    }
+}
+
+[dir="ltr"] .decision-card::before {
+    right: auto;
+    left: 0;
 }
 
 .decision-card:hover {
@@ -1023,6 +1122,256 @@ img {
 [data-theme="dark"] .badge-secret {
     background-color: #450a0a;
     color: #fca5a5;
+}
+
+/* Modern Team Card & Layout */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.team-grid > * {
+    flex: 0 1 350px;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Modern Card */
+.modern-card {
+    background-color: var(--surface);
+    border-radius: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.modern-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.modern-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modern-card:hover::before {
+    opacity: 1;
+}
+
+.modern-card .icon-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(245, 158, 11, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.5s ease;
+}
+
+.modern-card:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.2), rgba(245, 158, 11, 0.2));
+}
+
+.modern-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.modern-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Team Card Modern */
+.team-card-modern {
+    background-color: var(--surface);
+    background: linear-gradient(145deg, var(--surface), rgba(255,255,255,0.5));
+    border-radius: 1.5rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .team-card-modern {
+    background: linear-gradient(145deg, var(--surface), rgba(255,255,255,0.02));
+}
+
+.team-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0.7;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.team-card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+}
+
+.team-card-modern:hover::before {
+    opacity: 1;
+    height: 8px;
+}
+
+.team-img-wrapper-modern {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    padding: 6px;
+    background: var(--bg-body);
+    border: 2px solid var(--border);
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.team-card-modern:hover .team-img-wrapper-modern {
+    border-color: var(--primary);
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 25px rgba(2, 132, 199, 0.25);
+}
+
+.team-img-modern {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.team-name-modern {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.team-role-modern {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+/* Placeholder Card Style */
+.team-card-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 280px;
+    padding: 2rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px dashed var(--border);
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .team-card-placeholder {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.team-card-placeholder:hover {
+    border-color: var(--primary);
+    background: var(--surface);
+    transform: translateY(-5px);
+}
+
+.team-card-placeholder .placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+    transition: transform 0.3s ease;
+}
+
+.team-card-placeholder:hover .placeholder-icon {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.team-card-placeholder h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dept-section {
+    margin-bottom: 5rem;
+    position: relative;
+    width: 100%;
+}
+
+.dept-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: block;
+}
+
+.dept-header h3 {
+    font-size: 1.75rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+}
+
+.dept-header h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary);
+    margin: 1rem auto 0;
+    border-radius: 2px;
 }
 
 .badge-public {
