@@ -7,69 +7,70 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/about.html</loc>
+    <loc>https://edutech-qalyubia.study/about</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/structure.html</loc>
+    <loc>https://edutech-qalyubia.study/structure</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/team.html</loc>
+    <loc>https://edutech-qalyubia.study/team.</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/contact.html</loc>
+    <loc>https://edutech-qalyubia.study/contact</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/announcements.html</loc>
+    <loc>https://edutech-qalyubia.study/announcements</loc>
     <lastmod>2025-12-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/platforms.html</loc>
+    <loc>https://edutech-qalyubia.study/platforms</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/administrations.html</loc>
+    <loc>https://edutech-qalyubia.study/administrations</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/tasks.html</loc>
+    <loc>https://edutech-qalyubia.study/tasks</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/decisions.html</loc>
+    <loc>https://edutech-qalyubia.study/decisions</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/news-digital-transformation-qalyubia-starts-here.html</loc>
+    <loc>https://edutech-qalyubia.study/news-digital-transformation-qalyubia-starts-here</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://edutech-qalyubia.study/news-qalyubia-digitization-et-launch.html</loc>
+    <loc>https://edutech-qalyubia.study/news-qalyubia-digitization-et-launch</loc>
     <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 </urlset>
+
