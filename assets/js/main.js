@@ -109,11 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyLang(lang) {
         html.setAttribute('lang', lang);
         html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        body.classList.remove('lang-ar', 'lang-en');
-        body.classList.add(lang === 'en' ? 'lang-en' : 'lang-ar');
         localStorage.setItem('lang', lang);
         
-        // Update button text if needed
+        // Toggle language classes
+        // Use inline-block or inline depending on your CSS, but usually unset or block/inline works.
+        // Let's assume the CSS handles visibility based on classes, or we set display directly.
+        // Based on common patterns:
+        document.querySelectorAll('.lang-ar').forEach(el => {
+            el.style.display = lang === 'ar' ? '' : 'none';
+        });
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = lang === 'en' ? '' : 'none';
+        });
+
+        // Update button text
         if (langToggle) {
             langToggle.textContent = lang === 'ar' ? 'English' : 'عربي';
         }
@@ -124,4 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
         }
     }
+
+    // Dynamic Year
+    const yearElements = document.querySelectorAll('.current-year');
+    const currentYear = new Date().getFullYear();
+    yearElements.forEach(el => {
+        el.textContent = currentYear;
+    });
 });
