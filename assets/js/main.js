@@ -111,10 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         localStorage.setItem('lang', lang);
         
-        // Toggle language classes
-        // Use inline-block or inline depending on your CSS, but usually unset or block/inline works.
-        // Let's assume the CSS handles visibility based on classes, or we set display directly.
-        // Based on common patterns:
         document.querySelectorAll('.lang-ar').forEach(el => {
             el.style.display = lang === 'ar' ? '' : 'none';
         });
@@ -122,10 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.display = lang === 'en' ? '' : 'none';
         });
 
-        // Update button text
         if (langToggle) {
             langToggle.textContent = lang === 'ar' ? 'English' : 'عربي';
         }
+        document.querySelectorAll('.social-links a').forEach(a => {
+            const ar = a.getAttribute('data-label-ar');
+            const en = a.getAttribute('data-label-en');
+            if (ar || en) {
+                const label = lang === 'ar' ? (ar || en || '') : (en || ar || '');
+                a.setAttribute('aria-label', label);
+                a.setAttribute('title', label);
+            }
+        });
     }
 
     function updateIcons() {
