@@ -19,6 +19,106 @@
       gtag('js', new Date());
       gtag('config', 'G-F6LTPEJK5V');
     </script>
+    <style>
+        .home-page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-page .hero {
+            padding: 3.5rem 0 3rem;
+            text-align: center;
+        }
+
+        .home-page .hero-logo {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1rem;
+        }
+
+        .home-page .hero-title {
+            font-size: clamp(2.3rem, 4vw, 3rem);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.05em;
+        }
+
+        .home-page .hero-subtitle {
+            margin-top: 0.9rem;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-inline: auto;
+            line-height: 1.8;
+        }
+
+        .home-page .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.9rem;
+        }
+
+        .home-intro .modern-card,
+        .home-pillars .modern-card,
+        .home-tasks .modern-card {
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 14px 30px -22px rgba(15, 23, 42, 0.6);
+        }
+
+        .home-announcements {
+            background: radial-gradient(circle at top, rgba(var(--primary-rgb), 0.12), transparent 55%), var(--surface);
+        }
+
+        .home-page .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .home-page .news-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        .home-structure-preview .card {
+            border-radius: 1.3rem;
+            border: 1px solid var(--border);
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.96);
+        }
+
+        .home-admins .modern-card {
+            border-radius: 1.4rem;
+            border: 1px solid var(--border);
+        }
+
+        [data-theme="dark"] .home-structure-preview .card {
+            background: rgba(15, 23, 42, 0.96);
+            border-color: rgba(148, 163, 184, 0.55);
+        }
+
+        @media (max-width: 768px) {
+            .home-page .hero {
+                padding: 2.7rem 0 2.2rem;
+            }
+
+            .home-page .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .home-page .hero-title {
+                font-size: 2.1rem;
+            }
+
+            .home-page .hero-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -86,7 +186,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="home-page">
         <!-- 1. Hero Section -->
         <section class="hero">
             <div class="container animate-fade-in">
@@ -113,7 +213,7 @@
         </section>
 
         <!-- 2. Brief About Section -->
-        <section class="features" style="background-color: var(--surface);">
+        <section class="features home-intro" style="background-color: var(--surface);">
             <div class="container">
                 <div class="section-header">
                     <h2>
@@ -163,7 +263,7 @@
             </div>
         </section>
 
-        <section class="features">
+        <section class="features home-announcements">
             <div class="container animate-fade-in">
                 <div class="section-header">
                     <h2>
@@ -246,7 +346,7 @@
         </section>
 
         <!-- 3. Work Pillars -->
-        <section class="features">
+        <section class="features home-pillars">
             <div class="container">
                 <div class="section-header">
                     <h2>
@@ -304,7 +404,7 @@
         </section>
 
         <!-- 4. Structure Preview -->
-        <section class="features" style="background-color: var(--surface);">
+        <section class="features home-structure-preview" style="background-color: var(--surface);">
             <div class="container">
                 <div class="section-header">
                     <h2>
@@ -358,7 +458,7 @@
         </section>
 
         <!-- 5. Educational Administrations -->
-        <section class="features">
+        <section class="features home-admins">
             <div class="container">
                 <div class="section-header">
                     <h2>
@@ -508,7 +608,7 @@
         </section>
 
         <!-- 6. Initial Tasks -->
-        <section class="features" style="background-color: var(--surface);">
+        <section class="features home-tasks" style="background-color: var(--surface);">
             <div class="container">
                 <div class="section-header">
                     <h2>

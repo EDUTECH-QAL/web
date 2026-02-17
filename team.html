@@ -12,8 +12,345 @@
     <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="67b76bf8-85f2-4d11-9f51-991c5b2c23f1" type="text/javascript" async></script>
-</head>    <style>
-        /* CSS styles moved to style.css */
+</head>    <style></style>
+    <style>
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.4;
+            filter: blur(80px);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            animation: move 25s infinite alternate;
+        }
+
+        .blob-1 {
+            background: var(--primary);
+            top: -150px;
+            right: -150px;
+            opacity: 0.25;
+        }
+
+        .blob-2 {
+            background: var(--secondary);
+            bottom: -150px;
+            left: -150px;
+            opacity: 0.2;
+            animation-duration: 30s;
+            animation-delay: -7s;
+        }
+
+        .blob-3 {
+            background: #0ea5e9;
+            top: 40%;
+            left: 15%;
+            width: 350px;
+            height: 350px;
+            opacity: 0.15;
+            animation-duration: 35s;
+        }
+
+        @keyframes move {
+            from { transform: translate(0, 0) rotate(0deg) scale(1); }
+            to { transform: translate(100px, 100px) rotate(360deg) scale(1.1); }
+        }
+
+        .team-page {
+            position: relative;
+        }
+
+        .team-page .container {
+            max-width: 1100px;
+        }
+
+        .dept-section {
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 1;
+            padding: 2.5rem 1.75rem;
+            border-radius: 2rem;
+            background:
+                radial-gradient(circle at top right, rgba(var(--primary-rgb), 0.12), transparent 55%),
+                radial-gradient(circle at bottom left, rgba(var(--secondary-rgb), 0.1), transparent 55%),
+                rgba(var(--surface-rgb, 255, 255, 255), 0.9);
+            box-shadow: 0 22px 45px -30px rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(var(--border-rgb, 229, 231, 235), 0.9);
+        }
+
+        .dept-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .dept-header h3 {
+            font-size: 2rem;
+            color: var(--text-main);
+            display: inline-block;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+
+        .dept-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .team-card-modern {
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(var(--border-rgb, 229, 231, 235), 0.5);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-card-modern:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--primary);
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.9);
+        }
+
+        .team-img-wrapper-modern {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .team-card-modern:hover .team-img-wrapper-modern {
+            transform: scale(1.05) rotate(3deg);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.3);
+        }
+
+        .team-img-modern {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card-modern:hover .team-img-modern {
+            transform: scale(1.1);
+        }
+
+        .team-name-modern {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .team-card-modern:hover .team-name-modern {
+            color: var(--primary);
+        }
+
+        .team-role-modern {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover Glow Effect */
+        .team-card-modern::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 2rem;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--primary-rgb), 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .team-card-modern:hover::after {
+            opacity: 1;
+        }
+
+        /* Ensure content is above the glow */
+        .team-card-modern > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Dark Mode Adjustments */
+        [data-theme="dark"] .team-card-modern {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        [data-theme="dark"] .team-card-modern:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--primary);
+        }
+
+        [data-theme="dark"] .team-img-wrapper-modern {
+            border-color: #1e293b;
+        }
+
+        /* Placeholder Styles Enhancement */
+        .team-card-placeholder {
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.5);
+            border: 2px dashed var(--border);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .team-card-placeholder:hover {
+            border-color: var(--primary);
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.7);
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            filter: grayscale(1);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .team-card-placeholder:hover .placeholder-icon {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .team-page .hero {
+            padding: 3.5rem 0 2.25rem;
+            text-align: center;
+        }
+
+        .team-page .hero-title {
+            font-size: clamp(2.4rem, 4vw, 3.1rem);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-subtitle {
+            margin-top: 0.85rem;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin-inline: auto;
+            line-height: 1.8;
+        }
+
+        .team-page .team-grid {
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .team-page .container {
+                padding-inline: 1.25rem;
+            }
+
+            .dept-section {
+                margin-bottom: 3rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .team-img-wrapper-modern {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1.25rem;
+            }
+
+            .team-card-modern {
+                padding: 1.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .team-page .hero {
+                padding: 2.75rem 0 1.75rem;
+            }
+
+            .team-page .hero-title {
+                font-size: 2.1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .dept-section {
+                margin-bottom: 2.5rem;
+                padding: 1.75rem 1.25rem;
+            }
+
+            .team-page .team-grid {
+                gap: 1.5rem;
+            }
+
+            .team-card-modern {
+                padding: 1.6rem;
+                border-radius: 1.6rem;
+            }
+
+            .team-img-wrapper-modern {
+                width: 135px;
+                height: 135px;
+            }
+        }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6LTPEJK5V"></script>
     <script>
@@ -24,6 +361,11 @@
     </script>
 </head>
 <body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
     <header class="header">
         <div class="container">
             <a href="index" class="logo">
@@ -88,20 +430,24 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero" style="padding: 3rem 0;">
+    <main class="team-page">
+        <section class="hero reveal" style="padding: 3rem 0;">
             <div class="container animate-fade-in">
                 <h1 class="hero-title">
                     <span class="lang-ar">فريق العمل</span>
                     <span class="lang-en">Our Team</span>
                 </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">فريق تقني واحد يضم الإشراف والقيادة والأقسام المتخصصة في منظومة متكاملة.</span>
+                    <span class="lang-en">A unified technical team bringing together supervision, leadership and specialized departments in one integrated structure.</span>
+                </p>
             </div>
         </section>
 
-        <section class="container animate-fade-in" style="padding-bottom: 4rem;">
+        <section class="container" style="padding-bottom: 4rem;">
             
             <!-- General Supervision Section -->
-            <div class="dept-section">
+            <div class="dept-section reveal">
                 <div class="dept-header">
                     <h3>
                         <span class="lang-ar">الإشراف العام</span>
@@ -115,7 +461,7 @@
                             <img src="assets/images/DR_Yasser.webp" width="3000" height="3000" alt="Dr. Yasser Mahmoud Mohamed" class="team-img-modern" loading="lazy">
                         </div>
                         <h3 class="team-name-modern">
-                            <span class="lang-ar">د / ياسر محمود محمد</span>
+                            <span class="lang-ar">الدكتور ياسر محمود محمد</span>
                             <span class="lang-en">Dr. Yasser Mahmoud Mohamed</span>
                         </h3>
                         <p class="team-role-modern">
@@ -140,8 +486,33 @@
                 </div>
             </div>
 
+            <!-- Team Leadership Section -->
+            <div class="dept-section reveal">
+                <div class="dept-header">
+                    <h3>
+                        <span class="lang-ar">قيادة الفريق</span>
+                        <span class="lang-en">Team Leadership</span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Hussein.webp" width="800" height="800" alt="Hussein Yahya Hussein" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">حسين يحيي حسين</span>
+                            <span class="lang-en">Hussein Yahya Hussein</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">قائد الفريق</span>
+                            <span class="lang-en">Team Leader</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Advisory Board Section -->
-            <div class="dept-section">
+            <div class="dept-section reveal">
                 <div class="dept-header">
                     <h3>
                         <span class="lang-ar">المجلس الاستشاري</span>
@@ -159,12 +530,12 @@
                             <img src="assets/images/Hussein.webp" width="800" height="800" alt="Hussein Yahya Hussein" class="team-img-modern" loading="lazy">
                         </div>
                         <h3 class="team-name-modern">
-                            <span class="lang-ar">حسين يحيى حسين</span>
+                            <span class="lang-ar">حسين يحيي حسين</span>
                             <span class="lang-en">Hussein Yahya Hussein</span>
                         </h3>
                         <p class="team-role-modern">
-                            <span class="lang-ar">مدير تنفيذي</span>
-                            <span class="lang-en">Executive Manager</span>
+                            <span class="lang-ar">قائد الفريق وعضو المجلس الاستشاري</span>
+                            <span class="lang-en">Team Leader & Advisory Board Member</span>
                         </p>
                     </div>
                     <!-- Member 2 -->
@@ -177,8 +548,8 @@
                             <span class="lang-en">Ahmed Mohamed Abdelalim</span>
                         </h3>
                         <p class="team-role-modern">
-                            <span class="lang-ar">مدير تنفيذي</span>
-                            <span class="lang-en">Executive Manager</span>
+                            <span class="lang-ar">مساعد المدير التنفيذي وعضو المجلس الاستشاري</span>
+                            <span class="lang-en">Assistant Executive Manager & Advisory Board Member</span>
                         </p>
                     </div>
                     <!-- Member 3 -->
@@ -191,15 +562,29 @@
                             <span class="lang-en">Youssef Mohamed Hazem</span>
                         </h3>
                         <p class="team-role-modern">
-                            <span class="lang-ar">مدير إداري</span>
-                            <span class="lang-en">Administrative Manager</span>
+                            <span class="lang-ar">مدير إداري وعضو المجلس الاستشاري</span>
+                            <span class="lang-en">Administrative Manager & Advisory Board Member</span>
+                        </p>
+                    </div>
+                    <!-- Member 4 - Ahmed Fayez Hassan -->
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Ahmed_fayez.webp" width="3000" height="3000" alt="Ahmed Fayez Hassan" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">أحمد فايز حسان</span>
+                            <span class="lang-en">Ahmed Fayez Hassan</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">رئيس قسم الأرشيف والبيانات وعضو المجلس الاستشاري</span>
+                            <span class="lang-en">Head of Archives & Data Dept & Advisory Board Member</span>
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- Media & Photography Dept (First Department) -->
-            <div class="dept-section">
+            <div class="dept-section reveal">
                 <div class="dept-header">
                     <h3>
                         <span class="lang-ar">قسم الميديا والتصوير</span>
@@ -224,7 +609,31 @@
                 </div>
             </div>
 
-            <div class="dept-section">
+            <div class="dept-section reveal">
+                <div class="dept-header">
+                    <h3>
+                        <span class="lang-ar">قسم الأرشيف والبيانات</span>
+                        <span class="lang-en">Archives & Data Dept</span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Ahmed_fayez.webp" width="3000" height="3000" alt="Ahmed Fayez Hassan" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">أحمد فايز حسان</span>
+                            <span class="lang-en">Ahmed Fayez Hassan</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">رئيس القسم</span>
+                            <span class="lang-en">Head of Section</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dept-section reveal">
                 <div class="dept-header">
                     <h3>
                         <span class="lang-ar">قسم التقييم والمتابعة</span>
@@ -248,58 +657,78 @@
                 </div>
             </div>
 
-            <!-- Other Departments -->
-            <div class="dept-section">
+            <!-- Projects & Software Dept -->
+            <div class="dept-section reveal">
                 <div class="dept-header">
                     <h3>
-                        <span class="lang-ar">باقي الأقسام</span>
-                        <span class="lang-en">Other Departments</span>
+                        <span class="lang-ar">قسم المشاريع والبرمجيات</span>
+                        <span class="lang-en">Projects & Software Dept</span>
                     </h3>
                 </div>
-                
                 <div class="team-grid">
-                     <!-- Projects & Software Dept -->
-                    <div class="team-card-placeholder">
-                        <div class="placeholder-icon">💻</div>
-                        <h4>
-                            <span class="lang-ar">قسم المشاريع والبرمجيات</span>
-                            <span class="lang-en">Projects & Software</span>
-                        </h4>
-                        <p class="text-muted"><span class="lang-ar">سيتم التحديث قريباً</span><span class="lang-en">Coming Soon</span></p>
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Hussein.webp" width="800" height="800" alt="Hussein Yahya Hussein" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">حسين يحيي حسين</span>
+                            <span class="lang-en">Hussein Yahya Hussein</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">رئيس قسم المشاريع والبرمجيات</span>
+                            <span class="lang-en">Head of Projects & Software Dept</span>
+                        </p>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Training Dept -->
-                    <div class="team-card-placeholder">
-                        <div class="placeholder-icon">🎓</div>
-                        <h4>
-                            <span class="lang-ar">قسم التدريب</span>
-                            <span class="lang-en">Training Dept</span>
-                        </h4>
-                        <p class="text-muted"><span class="lang-ar">سيتم التحديث قريباً</span><span class="lang-en">Coming Soon</span></p>
+            <!-- Training Dept -->
+            <div class="dept-section reveal">
+                <div class="dept-header">
+                    <h3>
+                        <span class="lang-ar">قسم التدريب</span>
+                        <span class="lang-en">Training Dept</span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Ahmed_mohamed.webp" width="673" height="703" alt="Ahmed Mohamed Abdelalim" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">أحمد محمد عبدالعليم</span>
+                            <span class="lang-en">Ahmed Mohamed Abdelalim</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">رئيس قسم التدريب</span>
+                            <span class="lang-en">Head of Training Dept</span>
+                        </p>
                     </div>
+                </div>
+            </div>
 
-                     <!-- Archives & Data Dept -->
-                     <div class="team-card-placeholder">
-                        <div class="placeholder-icon">📂</div>
-                        <h4>
-                            <span class="lang-ar">قسم الأرشيف والبيانات</span>
-                            <span class="lang-en">Archives & Data</span>
-                        </h4>
-                        <p class="text-muted"><span class="lang-ar">سيتم التحديث قريباً</span><span class="lang-en">Coming Soon</span></p>
+            <!-- Content Creation Dept -->
+            <div class="dept-section reveal">
+                <div class="dept-header">
+                    <h3>
+                        <span class="lang-ar">قسم إعداد المحتوى</span>
+                        <span class="lang-en">Content Creation Dept</span>
+                    </h3>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card-modern">
+                        <div class="team-img-wrapper-modern">
+                            <img src="assets/images/Yousef_mohamed.webp" width="1440" height="1920" alt="Youssef Mohamed Hazem" class="team-img-modern" loading="lazy">
+                        </div>
+                        <h3 class="team-name-modern">
+                            <span class="lang-ar">يوسف محمد حازم صياد</span>
+                            <span class="lang-en">Youssef Mohamed Hazem Sayad</span>
+                        </h3>
+                        <p class="team-role-modern">
+                            <span class="lang-ar">رئيس قسم إعداد المحتوى</span>
+                            <span class="lang-en">Head of Content Creation Dept</span>
+                        </p>
                     </div>
-
-                
-
-                    <!-- Training Content Creation Dept -->
-                    <div class="team-card-placeholder">
-                        <div class="placeholder-icon">📝</div>
-                        <h4>
-                            <span class="lang-ar">قسم إعداد المحتوى</span>
-                            <span class="lang-en">Content Creation</span>
-                        </h4>
-                        <p class="text-muted"><span class="lang-ar">سيتم التحديث قريباً</span><span class="lang-en">Coming Soon</span></p>
-                    </div>
-
                 </div>
             </div>
 
@@ -385,6 +814,35 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        // Scroll Reveal Implementation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < triggerBottom) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Hover Glow Effect Implementation
+        document.querySelectorAll('.team-card-modern').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+    </script>
 </body>
 </html>
 

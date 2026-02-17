@@ -13,7 +13,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="67b76bf8-85f2-4d11-9f51-991c5b2c23f1" type="text/javascript" async></script>
     <style>
-        /* Page Specific Styles */
+        .structure-page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .structure-page .container {
+            max-width: 1100px;
+        }
+
+        .structure-page .hero {
+            padding: 3.25rem 0 2.25rem;
+            text-align: center;
+        }
+
+        .structure-page .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.04em;
+        }
+
+        .structure-page .hero-subtitle {
+            margin-top: 0.85rem;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin-inline: auto;
+            line-height: 1.8;
+        }
+
         .official-note {
             background-color: var(--surface);
             border-left: 4px solid var(--primary);
@@ -26,6 +56,11 @@
             text-align: center;
         }
         
+        [dir="rtl"] .official-note {
+            border-left: none;
+            border-right: 4px solid var(--primary);
+        }
+
         [dir="rtl"] .official-note {
             border-left: none;
             border-right: 4px solid var(--primary);
@@ -220,6 +255,20 @@
         .note-icon {
             color: var(--secondary);
         }
+
+        @media (max-width: 768px) {
+            .structure-page .hero {
+                padding: 2.5rem 0 1.75rem;
+            }
+
+            .structure-page .hero-title {
+                font-size: 2.1rem;
+            }
+
+            .structure-page .hero-subtitle {
+                font-size: 0.9rem;
+            }
+        }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6LTPEJK5V"></script>
     <script>
@@ -293,7 +342,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="structure-page">
         <!-- Official Approval Note -->
         <div class="container animate-fade-in">
             <div class="official-note">
@@ -302,8 +351,7 @@
             </div>
         </div>
 
-        <!-- 1. Hero Section -->
-        <section class="hero" style="padding: 2rem 0 4rem;">
+        <section class="hero">
             <div class="container animate-fade-in">
                 <h1 class="hero-title">
                     <span class="lang-ar">الهيكل التنظيمي – EDU-TECH Qalyubia (ET)</span>
@@ -324,61 +372,28 @@
                     <span class="lang-en">Advisory Council</span>
                 </h2>
                 <p class="text-muted">
-                    <span class="lang-ar">المرجع الأعلى لاعتماد أي قرار أو خطة تنفيذية داخل الفريق</span>
-                    <span class="lang-en">The highest authority for approving any decision or executive plan within the team</span>
+                    <span class="lang-ar">المرجع الأعلى لاتخاذ القرارات التي يتم عرضها على الإشراف العام لاعتمادها وتنفيذها.</span>
+                    <span class="lang-en">The supreme authority for decision-making presented to General Supervision for approval and implementation.</span>
                 </p>
             </div>
 
             <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
-                <!-- Member 1 -->
-                <div class="member-card">
-                    <div class="member-img-wrapper">
-                        <img src="assets/images/Yousef_mohamed.webp" width="1440" height="1920" alt="Youssef Mohamed Hazem" class="member-img" loading="lazy">
-                    </div>
-                    <h3 class="member-name">
-                        <span class="lang-ar">يوسف محمد حازم</span>
-                        <span class="lang-en">Youssef Mohamed Hazem</span>
-                    </h3>
-                    <p class="member-role">
-                        <span class="lang-ar">المدير الإداري</span>
-                        <span class="lang-en">Administrative Manager</span>
-                    </p>
-                </div>
-
-                <!-- Member 2 -->
-             <!--   <div class="member-card">
-                    <div class="member-img-wrapper">
-                        <div style="width:100%; height:100%; background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:3rem; color:var(--text-muted);">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <h3 class="member-name">
-                        <span class="lang-ar">أحمد فايز حسان</span>
-                        <span class="lang-en">Ahmed Fayez Hassan</span>
-                    </h3>
-                    <p class="member-role">
-                        <span class="lang-ar">مساعد المدير الإداري</span>
-                        <span class="lang-en">Assistant Administrative Manager</span>
-                    </p>
-                </div> 
-            -->
-
-                <!-- Member 3 -->
+                <!-- Member 1 - Hussein -->
                 <div class="member-card">
                     <div class="member-img-wrapper">
                         <img src="assets/images/Hussein.webp" width="800" height="800" alt="Hussein Yahya Hussein" class="member-img" loading="lazy">
                     </div>
                     <h3 class="member-name">
-                        <span class="lang-ar">حسين يحيى حسين</span>
+                        <span class="lang-ar">حسين يحيي حسين</span>
                         <span class="lang-en">Hussein Yahya Hussein</span>
                     </h3>
                     <p class="member-role">
-                        <span class="lang-ar">المدير التنفيذي</span>
-                        <span class="lang-en">Executive Director</span>
+                        <span class="lang-ar">قائد الفريق وعضو المجلس الاستشاري</span>
+                        <span class="lang-en">Team Leader & Advisory Board Member</span>
                     </p>
                 </div>
 
-                <!-- Member 4 -->
+                <!-- Member 2 - Ahmed Mohamed Abdelalim -->
                 <div class="member-card">
                     <div class="member-img-wrapper">
                         <img src="assets/images/Ahmed_mohamed.webp" width="673" height="703" alt="Ahmed Mohamed Abdelalim" class="member-img" loading="lazy">
@@ -388,8 +403,38 @@
                         <span class="lang-en">Ahmed Mohamed Abdelalim</span>
                     </h3>
                     <p class="member-role">
-                        <span class="lang-ar">مساعد المدير التنفيذي</span>
-                        <span class="lang-en">Assistant Executive Director</span>
+                        <span class="lang-ar">مساعد المدير التنفيذي وعضو المجلس الاستشاري</span>
+                        <span class="lang-en">Assistant Executive Manager & Advisory Board Member</span>
+                    </p>
+                </div>
+
+                <!-- Member 3 - Youssef Mohamed Hazem -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <img src="assets/images/Yousef_mohamed.webp" width="1440" height="1920" alt="Youssef Mohamed Hazem" class="member-img" loading="lazy">
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">يوسف محمد حازم</span>
+                        <span class="lang-en">Youssef Mohamed Hazem</span>
+                    </h3>
+                    <p class="member-role">
+                        <span class="lang-ar">مدير إداري وعضو المجلس الاستشاري</span>
+                        <span class="lang-en">Administrative Manager & Advisory Board Member</span>
+                    </p>
+                </div>
+
+                <!-- Member 4 - Ahmed Fayez Hassan -->
+                <div class="member-card">
+                    <div class="member-img-wrapper">
+                        <img src="assets/images/Ahmed_fayez.webp" width="3000" height="3000" alt="Ahmed Fayez Hassan" class="member-img" loading="lazy">
+                    </div>
+                    <h3 class="member-name">
+                        <span class="lang-ar">أحمد فايز حسان</span>
+                        <span class="lang-en">Ahmed Fayez Hassan</span>
+                    </h3>
+                    <p class="member-role">
+                        <span class="lang-ar">رئيس قسم الأرشيف والبيانات وعضو المجلس الاستشاري</span>
+                        <span class="lang-en">Head of Archives & Data Dept & Advisory Board Member</span>
                     </p>
                 </div>
             </div>

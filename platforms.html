@@ -19,6 +19,243 @@
       gtag('js', new Date());
       gtag('config', 'G-F6LTPEJK5V');
     </script>
+    <style>
+        .platforms-page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platforms-page .hero {
+            padding: 3.5rem 0 2.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .platforms-page .hero-title {
+            font-size: clamp(2.3rem, 4vw, 3rem);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.05em;
+        }
+
+        .platforms-page .hero-subtitle {
+            margin-top: 0.9rem;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-inline: auto;
+            line-height: 1.8;
+        }
+
+        .platforms-strip {
+            margin-top: 1.75rem;
+            display: inline-flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .platform-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .platform-pill i {
+            font-size: 0.9rem;
+        }
+
+        .platform-pill.facebook {
+            background: rgba(59, 89, 152, 0.08);
+            color: #1877f2;
+        }
+
+        .platform-pill.instagram {
+            background: rgba(225, 48, 108, 0.08);
+            color: #e1306c;
+        }
+
+        .platform-pill.youtube {
+            background: rgba(255, 0, 0, 0.08);
+            color: #ff0000;
+        }
+
+        .platforms-section {
+            background: radial-gradient(circle at top, rgba(var(--primary-rgb), 0.1), transparent 55%), var(--surface);
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .platform-card {
+            border-radius: 1.7rem;
+            padding: 1.9rem 1.6rem;
+            border: 1px solid var(--border);
+            background: rgba(var(--surface-rgb, 255, 255, 255), 0.92);
+            box-shadow: 0 16px 35px -25px rgba(15, 23, 42, 0.65);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .platform-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(500px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.12), transparent 45%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .platform-card:hover::after {
+            opacity: 1;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 22px 45px -25px rgba(15, 23, 42, 0.9);
+            border-color: var(--primary);
+        }
+
+        .platform-card .icon-box {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-card.facebook .icon-box {
+            background: rgba(24, 119, 242, 0.12);
+            color: #1877f2;
+        }
+
+        .platform-card.instagram .icon-box {
+            background: rgba(225, 48, 108, 0.12);
+            color: #e1306c;
+        }
+
+        .platform-card.youtube .icon-box {
+            background: rgba(255, 0, 0, 0.12);
+            color: #ff0000;
+        }
+
+        .platform-card.email .icon-box {
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+        }
+
+        .platform-card .card-title {
+            margin-bottom: 0.1rem;
+        }
+
+        .platform-card .card-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .platform-card .news-actions {
+            margin-top: 0.75rem;
+        }
+
+        .platform-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        [data-theme="dark"] .platforms-section {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%), #020617;
+        }
+
+        [data-theme="dark"] .platforms-strip {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: rgba(51, 65, 85, 0.9);
+        }
+
+        [data-theme="dark"] .platform-pill.facebook {
+            background: rgba(24, 119, 242, 0.2);
+            color: #bfdbfe;
+        }
+
+        [data-theme="dark"] .platform-pill.instagram {
+            background: rgba(225, 48, 108, 0.2);
+            color: #fed7e2;
+        }
+
+        [data-theme="dark"] .platform-pill.youtube {
+            background: rgba(248, 113, 113, 0.25);
+            color: #fee2e2;
+        }
+
+        [data-theme="dark"] .platform-card {
+            background: rgba(15, 23, 42, 0.96);
+            border-color: rgba(148, 163, 184, 0.45);
+            box-shadow: 0 22px 45px -25px rgba(0, 0, 0, 0.9);
+        }
+
+        [data-theme="dark"] .platform-card.facebook .icon-box {
+            background: rgba(24, 119, 242, 0.25);
+            color: #60a5fa;
+        }
+
+        [data-theme="dark"] .platform-card.instagram .icon-box {
+            background: rgba(225, 48, 108, 0.25);
+            color: #fb7185;
+        }
+
+        [data-theme="dark"] .platform-card.youtube .icon-box {
+            background: rgba(248, 113, 113, 0.25);
+            color: #fca5a5;
+        }
+
+        [data-theme="dark"] .platform-card.email .icon-box {
+            background: rgba(16, 185, 129, 0.25);
+            color: #6ee7b7;
+        }
+
+        @media (max-width: 768px) {
+            .platforms-page .hero {
+                padding: 2.7rem 0 2rem;
+            }
+
+            .platforms-page .hero-title {
+                font-size: 2.1rem;
+            }
+
+            .platforms-page .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .platforms-strip {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .platform-card {
+                padding: 1.7rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -86,7 +323,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="platforms-page">
         <section class="hero">
             <div class="container animate-fade-in">
                 <h1 class="hero-title">
@@ -97,10 +334,15 @@
                     <span class="lang-ar">تابعنا على منصاتنا الرسمية وتواصل معنا مباشرة</span>
                     <span class="lang-en">Follow our official platforms and reach us directly</span>
                 </p>
+                <div class="platforms-strip">
+                    <span class="platform-pill facebook"><i class="fab fa-facebook-f"></i><span class="lang-ar">فيسبوك</span><span class="lang-en">Facebook</span></span>
+                    <span class="platform-pill instagram"><i class="fab fa-instagram"></i><span class="lang-ar">إنستجرام</span><span class="lang-en">Instagram</span></span>
+                    <span class="platform-pill youtube"><i class="fab fa-youtube"></i><span class="lang-ar">يوتيوب</span><span class="lang-en">YouTube</span></span>
+                </div>
             </div>
         </section>
 
-        <section class="features" style="background-color: var(--surface);">
+        <section class="features platforms-section">
             <div class="container">
                 <div class="section-header">
                     <h2>
@@ -112,8 +354,8 @@
                         <span class="lang-en">We share updates and activities across these platforms</span>
                     </p>
                 </div>
-                <div class="grid-3">
-                    <div class="card">
+                <div class="platforms-grid">
+                    <div class="card platform-card facebook">
                         <div class="icon-box"><i class="fab fa-facebook-f"></i></div>
                         <h3 class="card-title">
                             <span class="lang-ar">فيسبوك</span>
@@ -130,7 +372,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card platform-card instagram">
                         <div class="icon-box"><i class="fab fa-instagram"></i></div>
                         <h3 class="card-title">
                             <span class="lang-ar">إنستجرام</span>
@@ -147,7 +389,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card platform-card youtube">
                         <div class="icon-box"><i class="fab fa-youtube"></i></div>
                         <h3 class="card-title">
                             <span class="lang-ar">يوتيوب</span>
@@ -164,7 +406,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card platform-card email">
                         <div class="icon-box"><i class="fas fa-envelope"></i></div>
                         <h3 class="card-title">
                             <span class="lang-ar">البريد الإلكتروني</span>
