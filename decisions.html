@@ -98,85 +98,449 @@
             </div>
         </section>
 
-        <section class="container animate-fade-in" style="padding-bottom: 4rem; max-width: 900px;">
-            
-            <!-- Decision 2 (Newest) -->
-            <div class="decision-card">
+        <section class="container animate-fade-in" style="padding-bottom: 2rem; max-width: 900px;">
+            <div class="search-container" style="margin-bottom: 2rem;">
+                <div class="input-group" style="position: relative; display: flex; align-items: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-search" style="position: absolute; right: 1.5rem; color: var(--text-muted);"></i>
+                    <input type="text" id="decision-search" class="form-control" 
+                        placeholder="ابحث عن قرار برقم القرار أو الموضوع..." 
+                        style="width: 100%; padding: 1rem 3rem 1rem 1rem; border-radius: 2rem; border: 1px solid var(--border); background: var(--surface); color: var(--text-main); font-family: var(--font-ar);">
+                </div>
+                
+                <div class="category-filters" style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem;">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="lang-ar">الكل</span>
+                        <span class="lang-en">All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="founding">
+                        <span class="lang-ar">تأسيس</span>
+                        <span class="lang-en">Founding</span>
+                    </button>
+                    <button class="filter-btn" data-filter="organizational">
+                        <span class="lang-ar">تنظيمي</span>
+                        <span class="lang-en">Organizational</span>
+                    </button>
+                    <button class="filter-btn" data-filter="administrative">
+                        <span class="lang-ar">إداري</span>
+                        <span class="lang-en">Administrative</span>
+                    </button>
+                </div>
+            </div>
+            <!-- DECISIONS_LIST_START -->
+            <div class="decision-card animate-fade-in" data-category="administrative" data-aos="fade-up" >
                 <div class="decision-header">
                     <div>
                         <h3 class="decision-title">
                             <span class="lang-ar">قرار إنشاء فرق الإدارات التعليمية (قرار إداري رقم 001/2025)</span>
-                            <span class="lang-en">Decision to create Educational Administration Teams (Administrative Decision No. 001/2025)</span>
+                            <span class="lang-en">Decision No. (001) / 2025</span>
                         </h3>
                         <div class="decision-date">
-                            <span>📅 23/12/2025</span>
+                            <span>📅 23 ديسمبر 2025</span>
                         </div>
                     </div>
                     <span class="decision-badge badge-public">
                         <span class="lang-ar">عام</span>
-                        <span class="lang-en">Public</span>
+                        <span class="lang-en">Administrative</span>
                     </span>
                 </div>
                 <div class="decision-content">
-                    <ul class="decision-list">
-                        <li>
-                            <span class="lang-ar">تشكيل فريق تقني بكل إدارة تعليمية.</span>
-                            <span class="lang-en">Formation of a technical team in each educational administration.</span>
-                        </li>
-                        <li>
-                            <span class="lang-ar">يتبع التوجيه العام المختص.</span>
-                            <span class="lang-en">Follows the specialized general guidance.</span>
-                        </li>
-                        <li>
-                            <span class="lang-ar">يهدف إلى دعم التحول الرقمي والأنشطة التقنية.</span>
-                            <span class="lang-en">Aims to support digital transformation and technical activities.</span>
-                        </li>
-                        <li>
-                            <span class="lang-ar">التنسيق الكامل مع المديرية مع الالتزام بكافة التعليمات والتنظيمات الصادرة.</span>
-                            <span class="lang-en">Full coordination with the Directorate while adhering to all issued instructions and regulations.</span>
-                        </li>
-                    </ul>
+                    <p class="decision-summary">
+                        <span class="lang-ar">تشكيل فريق تقني بكل إدارة تعليمية يتبع التوجيه العام المختص، ويهدف إلى دعم التحول الرقمي والأنشطة التقنية بالتنسيق الكامل مع المديرية.</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> إداري
+                    </div>
                 </div>
                 <div class="decision-actions">
-                    <a href="assets/Documents/قرار_إداري_رقم_001-2025.pdf" target="_blank" class="btn btn-primary">
-                        <span class="lang-ar">📥 تحميل الملف المرفق</span>
-                        <span class="lang-en">📥 Download Attached File</span>
-                    </a>
+                    
+                <a href="decisions/decision-001.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/قرار_إداري_رقم_001-2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
                 </div>
             </div>
-
-            <!-- Decision 1 (Oldest) -->
-            <div class="decision-card secret" style="opacity: 0.8;">
+        
+            <div class="decision-card animate-fade-in" data-category="founding" data-aos="fade-up" style="opacity: 0.8;">
                 <div class="decision-header">
                     <div>
                         <h3 class="decision-title">
                             <span class="lang-ar">قرار إنشاء الفريق</span>
-                            <span class="lang-en">Team Creation Decision</span>
+                            <span class="lang-en">Decision No. (000) / 2025</span>
                         </h3>
                         <div class="decision-date">
-                            <span class="lang-ar">📅 2025/12/16</span>
-                            <span class="lang-en">📅 16/12/2025</span>
+                            <span>📅 16 ديسمبر 2025</span>
                         </div>
                     </div>
                     <span class="decision-badge badge-secret">
-                        <span class="lang-ar">سري للغاية – مغلق حاليًا</span>
-                        <span class="lang-en">Top Secret – Currently Closed</span>
+                        <span class="lang-ar">سري للغاية</span>
+                        <span class="lang-en">Founding</span>
                     </span>
                 </div>
                 <div class="decision-content">
-                    <p>
-                        <span class="lang-ar">إنشاء فريق EDU-TECH Qalyubia تحت إشراف المديرية والموجه العام للكمبيوتر.</span>
-                        <span class="lang-en">Creation of EDU-TECH Qalyubia team under the supervision of the Directorate and the General Computer Supervisor.</span>
+                    <p class="decision-summary">
+                        <span class="lang-ar">إنشاء فريق EDU-TECH Qalyubia تحت إشراف المديرية والموجه العام للكمبيوتر ككيان تقني رسمي.</span>
                     </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تأسيسي
+                    </div>
                 </div>
                 <div class="decision-actions">
-                    <button class="btn btn-outline" disabled style="cursor: not-allowed; opacity: 0.6;">
-                        <span class="lang-ar">🔒 مغلق للسرية</span>
-                        <span class="lang-en">🔒 Closed for Confidentiality</span>
-                    </button>
+                    
+                <button class="btn btn-outline" disabled style="cursor: not-allowed; opacity: 0.6;">
+                    <span class="lang-ar">🔒 مغلق للسرية</span>
+                    <span class="lang-en">🔒 Closed for Confidentiality</span>
+                </button>
+            
                 </div>
             </div>
-
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">اعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، وأقسامه، واختصاصاته، وآليات إدارة الملفات التنفيذية</span>
+                            <span class="lang-en">Decision No. (1) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 23 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على رؤية الفريق المركزي EDU-TECH (ET) في دعم التحول الرقمي، والمساهمة في تطوير العملية التعليمية، وتعزيز العمل المؤسسي المنظم، وانطلاقًا من أهمية تحديد الأدوار والمسؤوليات، وضبط العلاقات التنظيمية والإدارية والتنفيذية داخل الفريق، ويُعد الفريق ...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-1.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار_الداخلي_رقم_(1)_لسنة_2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">اعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية بالفريق المركزي وأقسامها الفرعية</span>
+                            <span class="lang-en">Decision No. (2) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 24 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، وانطلاقًا من أهمية توضيح المسؤوليات والمهام التفصيلية لكل قسم فرعي من أقسام الفريق الإداري والتنفيذي، وبما يضمن وضوح الاختصاصات، ودقة توزيع الأدوار، و...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-2.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار_الداخلي_رقم_(2)_لسنة_2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم الصلاحيات القيادية والإدارية والتنفيذية، وآليات الاجتماعات، واعتماد القرارات، والتفويض، والإشراف، وآليات المقترحات والطلبات، والتنسيق بين الأقسام</span>
+                            <span class="lang-en">Decision No. (3) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 25 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، وانطلاقًا من أهمية ضبط الصلاحيات، وتحديد مستويات الاعت...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-3.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار_الداخلي_رقم_(3)_لسنة_2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم شؤون الانضمام، والعضوية، والمناصب، والترشح، والانتخابات، والتعيين، والتكليفات، والترقية التنظيمية، وإعادة التسكين، والاعتذار، والإجازات، والاستقالة، والشغور، والجمع بين المهام</span>
+                            <span class="lang-en">Decision No. (4) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 26 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، والقرار الداخلي رقم (3) لسنة 2025 المتعلق بتنظيم الصلا...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-4.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (4) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم الشكاوى، والمخالفات، والتحقق، والجزاءات، والوقف المؤقت، والتظلمات، وتسوية النزاعات</span>
+                            <span class="lang-en">Decision No. (5) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 27 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية بالفريق المركزي، والقرار الداخلي رقم (3) لسنة 2025 المت...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-5.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (5) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم الآداب العامة، والسلوك، والانضباط، والاحترام، وآداب التعامل، وآداب التواصل، وآداب التمثيل المؤسسي داخل فريق EDU-TECH</span>
+                            <span class="lang-en">Decision No. (6) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 28 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، والقرار الداخلي رقم (3) لسنة 2025 المتعلق بتنظيم الصلا...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-6.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (6) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم فرق الإدارات التعليمية التابعة لفريق EDU-TECH، وتشكيلها، والإشراف عليها، وآليات عملها، وعلاقتها بالفريق المركزي</span>
+                            <span class="lang-en">Decision No. (7) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 29 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، والقرار الداخلي رقم (3) لسنة 2025 المتعلق بتنظيم الصلا...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-7.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (7) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم التعاون، والشراكات، والتنسيقات، والعلاقات الخارجية الخاصة بفريق EDU-TECH، وتحديد الجهة المختصة بإدارتها، وآليات طلبها، واعتمادها، وتنفيذها، ومتابعتها، وتوثيقها</span>
+                            <span class="lang-en">Decision No. (8) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 30 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، والقرار الداخلي رقم (3) لسنة 2025 المتعلق بتنظيم الصلا...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-8.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (8) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        
+            <div class="decision-card animate-fade-in" data-category="organizational" data-aos="fade-up" >
+                <div class="decision-header">
+                    <div>
+                        <h3 class="decision-title">
+                            <span class="lang-ar">تنظيم المرجعية العليا للفريق واعتماد القرارات الجوهرية، وآلية العمل الداخلي للمجلس الاستشاري، وضبط الصلاحيات التنفيذية والإدارية والتنظيمية داخل الفريق</span>
+                            <span class="lang-en">Decision No. (9) / 2025</span>
+                        </h3>
+                        <div class="decision-date">
+                            <span>📅 31 ديسمبر 2025</span>
+                        </div>
+                    </div>
+                    <span class="decision-badge badge-public">
+                        <span class="lang-ar">عام</span>
+                        <span class="lang-en">Organizational</span>
+                    </span>
+                </div>
+                <div class="decision-content">
+                    <p class="decision-summary">
+                        <span class="lang-ar">بناءً على القرار الداخلي رقم (1) لسنة 2025 المتعلق باعتماد الهيكل التنظيمي التفصيلي للفريق المركزي، والقرار الداخلي رقم (2) لسنة 2025 المتعلق باعتماد المهام التفصيلية للأقسام الإدارية والتنفيذية، والقرار الداخلي رقم (3) لسنة 2025 المتعلق بتنظيم الصلا...</span>
+                    </p>
+                    <div class="decision-tag">
+                        <i class="fas fa-folder"></i> تنظيمي
+                    </div>
+                </div>
+                <div class="decision-actions">
+                    
+                <a href="decisions/decision-9.html" class="btn btn-outline">
+                    <span class="lang-ar">👁️ رؤية التفاصيل</span>
+                    <span class="lang-en">👁️ View Details</span>
+                </a>
+                <a href="assets/Documents/القرار الداخلي رقم (9) لسنة 2025.pdf" target="_blank" class="btn btn-primary">
+                    <span class="lang-ar">📥 تحميل PDF</span>
+                    <span class="lang-en">📥 Download PDF</span>
+                </a>
+            
+                </div>
+            </div>
+        <!-- DECISIONS_LIST_END -->
         </section>
     </main>
 
