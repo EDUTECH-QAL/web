@@ -144,4 +144,48 @@ document.addEventListener('DOMContentLoaded', () => {
     yearElements.forEach(el => {
         el.textContent = currentYear;
     });
+
+    // Decision Search & Category Filter
+    const decisionSearch = document.getElementById('decision-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.decision-card');
+
+    if (decisionSearch || filterBtns.length > 0) {
+        const filterDecisions = () => {
+            const searchTerm = decisionSearch ? decisionSearch.value.toLowerCase().trim() : '';
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+
+            cards.forEach(card => {
+                const title = card.querySelector('.decision-title').textContent.toLowerCase();
+                const summary = card.querySelector('.decision-summary').textContent.toLowerCase();
+                const subject = card.querySelector('.decision-subject')?.textContent.toLowerCase() || '';
+                const category = card.dataset.category;
+
+                const matchesSearch = title.includes(searchTerm) || summary.includes(searchTerm) || subject.includes(searchTerm);
+                const matchesCategory = activeFilter === 'all' || category === activeFilter;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = '';
+                    setTimeout(() => card.classList.remove('hidden'), 10);
+                } else {
+                    card.classList.add('hidden');
+                    setTimeout(() => {
+                        if (card.classList.contains('hidden')) card.style.display = 'none';
+                    }, 400);
+                }
+            });
+        };
+
+        if (decisionSearch) {
+            decisionSearch.addEventListener('input', filterDecisions);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterDecisions();
+            });
+        });
+    }
 });
