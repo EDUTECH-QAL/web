@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Day 2026 - EDU-TECH Qalyubia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/tech-day.css">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="td-page">
+    <header class="header">
+        <div class="container">
+            <a href="../../index" class="logo">
+                <img src="../../assets/images/logo.webp" width="2813" height="2813" alt="EDU-TECH Qalyubia" loading="lazy">
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../../index" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                
+                <div class="dropdown">
+                    <a href="../../about" class="nav-link dropdown-toggle">
+                        <span class="lang-ar">عن الفريق</span>
+                        <span class="lang-en">About Team</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="../../about" class="dropdown-item">
+                            <span class="lang-ar">عن الفريق</span>
+                            <span class="lang-en">About Team</span>
+                        </a>
+                        <a href="../../team" class="dropdown-item">
+                            <span class="lang-ar">الأعضاء</span>
+                            <span class="lang-en">Members</span>
+                        </a>
+                        <a href="../../structure" class="dropdown-item">
+                            <span class="lang-ar">الهيكل التنظيمي</span>
+                            <span class="lang-en">Structure</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="../../administrations" class="nav-link">
+                    <span class="lang-ar">الإدارات</span>
+                    <span class="lang-en">Administrations</span>
+                </a>
+
+                <a href="index" class="nav-link active">
+                    <span class="lang-ar">فعالية Tech Day</span>
+                    <span class="lang-en">Tech Day Event</span>
+                </a>
+
+                <a href="../../tasks" class="nav-link">
+                    <span class="lang-ar">المهام</span>
+                    <span class="lang-en">Tasks</span>
+                </a>
+                <a href="../../decisions" class="nav-link">
+                    <span class="lang-ar">القرارات</span>
+                    <span class="lang-en">Decisions</span>
+                </a>
+                <a href="../../contact" class="nav-link">
+                    <span class="lang-ar">تواصل معنا</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                
+                <div class="controls">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                    <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sponsorship Section -->
+        <section class="td-sponsorship">
+            <div class="container">
+                <div class="sponsorship-grid">
+                    <div class="sponsor-card">
+                        <div class="sponsor-img-wrapper">
+                            <img src="../../assets/images/DR_Yasser.webp" alt="Dr. Yasser Mahmoud Mohamed" class="sponsor-img">
+                        </div>
+                        <div class="sponsor-info">
+                            <span class="sponsor-label">
+                                <span class="lang-ar">تحت رعاية</span>
+                                <span class="lang-en">Under the patronage of</span>
+                            </span>
+                            <h2 class="sponsor-name">
+                                <span class="lang-ar">دكتور / ياسر محمود محمد</span>
+                                <span class="lang-en">Dr. Yasser Mahmoud Mohamed</span>
+                            </h2>
+                            <p class="sponsor-title">
+                                <span class="lang-ar">وكيل وزارة التربية والتعليم بالقليوبية</span>
+                                <span class="lang-en">Director of Qalyubia Directorate of Education</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-img-wrapper">
+                            <div class="placeholder-avatar">G</div>
+                        </div>
+                        <div class="sponsor-info">
+                            <span class="sponsor-label">
+                                <span class="lang-ar">وبإشراف</span>
+                                <span class="lang-en">Supervised by</span>
+                            </span>
+                            <h2 class="sponsor-name">
+                                <span class="lang-ar">د / جيهان محمد عبد الجواد</span>
+                                <span class="lang-en">Dr. Gihan Mohamed Abdel Gawad</span>
+                            </h2>
+                            <p class="sponsor-title">
+                                <span class="lang-ar">توجيه عام الحاسب الآلي بالقليوبية</span>
+                                <span class="lang-en">General Supervisor of Computer Science</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="td-hero section-padding">
+            <div class="container">
+                <div class="hero-content text-center">
+                    <h1 class="td-title">
+                        <span class="lang-ar">فعالية Tech Day 2026</span>
+                        <span class="lang-en">Tech Day Event 2026</span>
+                    </h1>
+                    <p class="section-subtitle">
+                        <span class="lang-ar">يوم تكنولوجي حافل بالابتكار والتعلم، يجمع المبدعين من طلاب محافظة القليوبية لاستكشاف آفاق المستقبل الرقمي.</span>
+                        <span class="lang-en">A technology day full of innovation and learning, bringing together creative students from Qalyubia to explore digital future horizons.</span>
+                    </p>
+                    <div class="event-meta-grid">
+                        <div class="meta-item" style="animation-delay: 0.1s">
+                            <i class="fas fa-calendar-check"></i>
+                            <span class="meta-text-top">
+                                <span class="lang-ar">التاريخ</span>
+                                <span class="lang-en">Date</span>
+                            </span>
+                            <span class="meta-text-main">
+                                <span class="lang-ar">الأحد، 1 مارس 2026</span>
+                                <span class="lang-en">Sunday, March 1, 2026</span>
+                            </span>
+                        </div>
+                        <div class="meta-item" style="animation-delay: 0.2s">
+                            <i class="fas fa-university"></i>
+                            <span class="meta-text-top">
+                                <span class="lang-ar">المكان</span>
+                                <span class="lang-en">Location</span>
+                            </span>
+                            <span class="meta-text-main">
+                                <span class="lang-ar">مدرسة مصطفى كامل الرسمية المتميزة للغات</span>
+                                <span class="lang-en">Mustafa Kamel Distinguished School</span>
+                            </span>
+                        </div>
+                        <div class="meta-item" style="animation-delay: 0.3s">
+                            <i class="fas fa-user-graduate"></i>
+                            <span class="meta-text-top">
+                                <span class="lang-ar">الحضور</span>
+                                <span class="lang-en">Attendance</span>
+                            </span>
+                            <span class="meta-text-main">
+                                <span class="lang-ar">100 طالب متميز من مختلف الإدارات</span>
+                                <span class="lang-en">100 distinguished students from various admins</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="td-gallery section-padding bg-surface">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <h2 class="section-title">
+                        <span class="lang-ar">معرض الصور</span>
+                        <span class="lang-en">Photo Gallery</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span class="lang-ar">لقطات حية توثق أجواء الفعالية والتفاعل بين الطلاب والمدربين.</span>
+                        <span class="lang-en">Live shots documenting the event atmosphere and interaction between students and trainers.</span>
+                    </p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="../../assets/images/gallery-1.webp" alt="Tech Day 2026 Photo" class="gallery-img" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="lang-ar">جانب من الحضور</span>
+                            <span class="lang-en">Attendees view</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="animation-delay: 0.1s">
+                        <img src="../../assets/images/gallery-2.webp" alt="Tech Day 2026 Photo" class="gallery-img" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="lang-ar">التفاعل في الورش</span>
+                            <span class="lang-en">Workshop interaction</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="animation-delay: 0.2s">
+                        <img src="../../assets/images/gallery-3.webp" alt="Tech Day 2026 Photo" class="gallery-img" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="lang-ar">الابتكار الطلابي</span>
+                            <span class="lang-en">Student innovation</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="animation-delay: 0.3s">
+                        <img src="../../assets/images/gallery-4.webp" alt="Tech Day 2026 Photo" class="gallery-img" loading="lazy">
+                        <div class="gallery-overlay">
+                            <span class="lang-ar">تكريم المتميزين</span>
+                            <span class="lang-en">Honoring excellence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workshops Section -->
+        <section class="td-workshops section-padding">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <h2 class="section-title">
+                        <span class="lang-ar">ورش العمل</span>
+                        <span class="lang-en">Workshops</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span class="lang-ar">استكشف المسارات التقنية المتنوعة التي تم تقديمها خلال الفعالية.</span>
+                        <span class="lang-en">Explore the diverse technical tracks presented during the event.</span>
+                    </p>
+                </div>
+                <div class="workshops-grid">
+                    <!-- Workshop 1 -->
+                    <div class="workshop-card">
+                        <div class="workshop-card-top">
+                            <div class="workshop-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h3 class="workshop-name">
+                                <span class="lang-ar">تطوير الويب الحديث</span>
+                                <span class="lang-en">Modern Web Development</span>
+                            </h3>
+                        </div>
+                        <p class="workshop-desc">
+                            <span class="lang-ar">بناء واجهات مستخدم احترافية باستخدام أحدث التقنيات البرمجية.</span>
+                            <span class="lang-en">Building professional user interfaces using the latest software technologies.</span>
+                        </p>
+                        <div class="workshop-card-footer">
+                            <a href="workshop-web" class="btn btn-primary">
+                                <span class="lang-ar">تفاصيل الورشة</span>
+                                <span class="lang-en">Workshop Details</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Workshop 2 -->
+                    <div class="workshop-card" style="animation-delay: 0.1s">
+                        <div class="workshop-card-top">
+                            <div class="workshop-icon"><i class="fas fa-brain"></i></div>
+                            <h3 class="workshop-name">
+                                <span class="lang-ar">الذكاء الاصطناعي</span>
+                                <span class="lang-en">Artificial Intelligence</span>
+                            </h3>
+                        </div>
+                        <p class="workshop-desc">
+                            <span class="lang-ar">مقدمة في علوم البيانات وتطبيقات الذكاء الاصطناعي في حياتنا.</span>
+                            <span class="lang-en">Introduction to data science and AI applications in our daily lives.</span>
+                        </p>
+                        <div class="workshop-card-footer">
+                            <a href="workshop-ai" class="btn btn-primary">
+                                <span class="lang-ar">تفاصيل الورشة</span>
+                                <span class="lang-en">Workshop Details</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Workshop 3 -->
+                    <div class="workshop-card" style="animation-delay: 0.2s">
+                        <div class="workshop-card-top">
+                            <div class="workshop-icon"><i class="fas fa-user-shield"></i></div>
+                            <h3 class="workshop-name">
+                                <span class="lang-ar">الأمن السيبراني</span>
+                                <span class="lang-en">Cyber Security</span>
+                            </h3>
+                        </div>
+                        <p class="workshop-desc">
+                            <span class="lang-ar">كيفية حماية الأنظمة الرقمية والتعامل مع التهديدات الأمنية.</span>
+                            <span class="lang-en">How to protect digital systems and deal with security threats.</span>
+                        </p>
+                        <div class="workshop-card-footer">
+                            <a href="workshop-cyber" class="btn btn-primary">
+                                <span class="lang-ar">تفاصيل الورشة</span>
+                                <span class="lang-en">Workshop Details</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="../../index" class="footer-logo-link">
+                        <img src="../../assets/images/logo.webp" width="2813" height="2813" alt="Logo" class="footer-logo" loading="lazy">
+                        <span>
+                            <span class="lang-ar">EDU-TECH Qalyubia</span>
+                            <span class="lang-en">EDU-TECH Qalyubia</span>
+                        </span>
+                    </a>
+                    <p class="footer-desc">
+                        <span class="lang-ar">الفريق التقني الرسمي لمديرية التربية والتعليم بالقليوبية. نسعى لتحقيق التحول الرقمي وتطوير البنية التحتية التكنولوجية.</span>
+                        <span class="lang-en">Official technical team of Qalyubia Directorate of Education. We aim to achieve digital transformation and develop technical infrastructure.</span>
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ETQal/" target="_blank" rel="noopener noreferrer" data-label-ar="صفحة EDU-TECH القليوبية على فيسبوك" data-label-en="EDU-TECH Qalyubia Facebook Page" aria-label="صفحة EDU-TECH القليوبية على فيسبوك" title="صفحة EDU-TECH القليوبية على فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/edutech_eg/" target="_blank" rel="noopener noreferrer" data-label-ar="حساب EDU-TECH الرسمي على إنستجرام" data-label-en="Official EDU-TECH Instagram Account" aria-label="حساب EDU-TECH الرسمي على إنستجرام" title="حساب EDU-TECH الرسمي على إنستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@EDUTEC-egy" target="_blank" rel="noopener noreferrer" data-label-ar="قناة EDU-TECH التعليمية على يوتيوب" data-label-en="EDU-TECH Educational YouTube Channel" aria-label="قناة EDU-TECH التعليمية على يوتيوب" title="قناة EDU-TECH التعليمية على يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbCaOfLGE56skfOwST47" target="_blank" rel="noopener noreferrer" data-label-ar="???? EDU-TECH ??? ??????" data-label-en="EDU-TECH WhatsApp Channel" aria-label="???? EDU-TECH ??? ??????" title="???? EDU-TECH ??? ??????"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h3>
+                        <span class="lang-ar">روابط سريعة</span>
+                        <span class="lang-en">Quick Links</span>
+                    </h3>
+                    <ul>
+                        <li><a href="../../index"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="../../about"><span class="lang-ar">عن الفريق</span><span class="lang-en">About Team</span></a></li>
+                        <li><a href="../../structure"><span class="lang-ar">الهيكل التنظيمي</span><span class="lang-en">Structure</span></a></li>
+                        <li><a href="../../contact"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h3>
+                        <span class="lang-ar">الإدارات والمهام</span>
+                        <span class="lang-en">Admins & Tasks</span>
+                    </h3>
+                    <ul>
+                        <li><a href="../../administrations"><span class="lang-ar">الإدارات التعليمية</span><span class="lang-en">Administrations</span></a></li>
+                        <li><a href="../../tasks"><span class="lang-ar">المهام الحالية</span><span class="lang-en">Current Tasks</span></a></li>
+                        <li><a href="../../decisions"><span class="lang-ar">القرارات</span><span class="lang-en">Decisions</span></a></li>
+                        <li><a href="../../announcements"><span class="lang-ar">الإعلانات</span><span class="lang-en">Announcements</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-col">
+                    <h3>
+                        <span class="lang-ar">معلومات الإتصال</span>
+                        <span class="lang-en">Contact Info</span>
+                    </h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt icon"></i>
+                            <span>
+                                <span class="lang-ar">مديرية التربية والتعليم بالقليوبية, مصر</span>
+                                <span class="lang-en">Qalyubia Directorate of Education, Egypt</span>
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope icon"></i>
+                            <a href="mailto:info@edutech-egy.com">info@edutech-egy.com</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp icon" style="color: #25D366;"></i>
+                            <a href="https://wa.me/201044660993" target="_blank" rel="noopener noreferrer" dir="ltr">+20 10 44660993</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang-ar">&copy; <span class="current-year"></span> فريق EDU-TECH القليوبية. جميع الحقوق محفوظة.</span>
+                    <span class="lang-en">&copy; <span class="current-year"></span> EDU-TECH Qalyubia Team. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
