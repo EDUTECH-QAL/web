@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Header Scroll Effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
     // DOM Elements
     const themeToggle = document.getElementById('theme-toggle');
     const langToggle = document.getElementById('lang-toggle');
@@ -77,8 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = e.target.closest('a');
             const dropdownToggle = e.target.closest('.dropdown-toggle');
             
-            // If it's a dropdown toggle on mobile, don't close the menu
+            // If it's a dropdown toggle on mobile, don't close the menu, toggle dropdown instead
             if (dropdownToggle && window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = dropdownToggle.closest('.dropdown');
+                dropdown.classList.toggle('active');
                 return;
             }
 
@@ -166,6 +179,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
     yearElements.forEach(el => {
         el.textContent = currentYear;
+    });
+
+    // Scroll to Top logic
+    const scrollToTop = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTop.classList.add('active');
+        } else {
+            scrollToTop.classList.remove('active');
+        }
+    });
+    scrollToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 
     // Decision Search & Category Filter

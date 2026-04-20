@@ -1,70 +1,91 @@
+// Initialize GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 // Initialize AOS (Animate On Scroll)
+// We use AOS for most scroll-reveal animations as it's more stable for visibility
 AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
+    duration: 600,
+    easing: 'ease-out',
     once: true,
     offset: 50,
-    delay: 50,
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Only run GSAP if elements are present and visible
     initHeroAnimations();
     initHoverAnimations();
+    // ScrollTrigger for specific complex animations only
+    initScrollTriggers();
 });
 
-// 1. Hero Section Animations (Using GSAP for complex entry)
+// 1. Hero Section Animations (Faster and more reliable)
 function initHeroAnimations() {
-    const heroContent = document.querySelector('.hero-modern .container, .hero .container');
-    if (!heroContent) return;
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
+    // Set initial state to visible in case animation fails
+    gsap.set(['.hero-logo', '.hero-title', '.hero-subtitle', '.hero-actions .btn'], { opacity: 1 });
 
-    tl.from(heroContent.querySelectorAll('h1, .hero-title'), {
-        y: 40,
-        opacity: 0,
-        delay: 0.1
-    })
-    .from(heroContent.querySelectorAll('p, .hero-subtitle'), {
-        y: 20,
-        opacity: 0
-    }, "-=0.8")
-    .from(heroContent.querySelectorAll('.hero-actions, .btn'), {
-        y: 15,
-        opacity: 0,
-        stagger: 0.1
-    }, "-=0.8")
-    .from(heroContent.querySelectorAll('.hero-image, .hero-logo'), {
+    const tl = gsap.timeline({ 
+        defaults: { ease: "power2.out", duration: 0.6 } 
+    });
+
+    tl.from('.hero-logo', {
         scale: 0.9,
         opacity: 0,
-        duration: 1,
-        ease: "back.out(1.2)"
-    }, "-=1");
+        duration: 0.8
+    })
+    .from('.hero-title', {
+        y: 20,
+        opacity: 0
+    }, "-=0.4")
+    .from('.hero-subtitle', {
+        y: 10,
+        opacity: 0
+    }, "-=0.4")
+    .from('.hero-actions .btn', {
+        y: 10,
+        opacity: 0,
+        stagger: 0.1
+    }, "-=0.4");
 }
 
-// 2. Interactive Animations (Using GSAP)
+// 2. Specific Scroll Triggers (For things AOS can't do)
+function initScrollTriggers() {
+    // Reveal header on scroll up / hide on scroll down (optional enhancement)
+    // For now, just ensure content revealed by AOS is not interfered with
+}
+
+// 3. Interactive Hover Effects (Lightweight)
 function initHoverAnimations() {
-    // Subtle button interaction
-    const buttons = document.querySelectorAll('.btn-primary, .btn-outline');
+    // Buttons
+    const buttons = document.querySelectorAll('.btn-primary, .btn-outline, .btn-news, .btn-icon, .scroll-to-top');
     buttons.forEach(btn => {
         btn.addEventListener('mouseenter', () => {
-            gsap.to(btn, { scale: 1.03, duration: 0.2 });
+            gsap.to(btn, { scale: 1.03, duration: 0.2, ease: "power1.out" });
         });
         btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, { scale: 1, duration: 0.2 });
+            gsap.to(btn, { scale: 1, duration: 0.2, ease: "power1.in" });
         });
     });
 
-    // Card interactive tilt
-    const modernCards = document.querySelectorAll('.modern-card, .team-card-modern, .news-card');
-    modernCards.forEach(card => {
-        const icon = card.querySelector('.icon-box, .team-img-wrapper-modern, .news-image-wrapper');
-        if (icon) {
-            card.addEventListener('mouseenter', () => {
-                gsap.to(icon, { y: -5, duration: 0.3, ease: "power2.out" });
+    // Cards
+    const cards = document.querySelectorAll('.modern-card, .news-card, .team-card-modern, .strategy-card, .decision-card, .structure-item');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                y: -5,
+                duration: 0.3,
+                ease: "power1.out"
             });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(icon, { y: 0, duration: 0.3, ease: "power2.in" });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                y: 0,
+                duration: 0.3,
+                ease: "power1.in"
             });
-        }
+        });
     });
 }
