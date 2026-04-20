@@ -13,34 +13,66 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="67b76bf8-85f2-4d11-9f51-991c5b2c23f1" type="text/javascript" async></script>
     <style>
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
         .admin-card {
             background-color: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.75rem;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .admin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        [dir="rtl"] .admin-card::before {
+            left: auto;
+            right: 0;
         }
         .admin-card:hover {
             border-color: var(--primary);
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
+        .admin-card:hover::before {
+            opacity: 1;
+        }
         .admin-name {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            color: var(--text-main);
         }
         .admin-status {
-            background-color: var(--bg-body);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(var(--primary-rgb, 2, 132, 199), 0.1);
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             font-size: 0.85rem;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
+            color: var(--primary);
+            font-weight: 600;
+            width: fit-content;
+        }
+        .admin-status i {
+            font-size: 0.75rem;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6LTPEJK5V"></script>
@@ -55,12 +87,6 @@
     <header class="header">
         <div class="container">
             <a href="index" class="logo">
-                <img src="assets/images/logo.webp" width="2813" height="2813" alt="EDU-TECH Qalyubia">
-            </a>
-
-    <header class="header">
-        <div class="container">
-            <a href="index" class="logo">
                 <img src="assets/images/logo.webp" width="2813" height="2813" alt="EDU-TECH Qalyubia" loading="lazy">
             </a>
 
@@ -72,149 +98,232 @@
 
             <nav class="nav-menu" id="nav-menu">
                 <a href="index" class="nav-link">
+                    <span class="lang-ar">الرئيسية</span>
+                    <span class="lang-en">Home</span>
                 </a>
+                
                 <div class="dropdown">
                     <a href="about" class="nav-link dropdown-toggle">
                         <span class="lang-ar">عن الفريق</span>
-                <div class="dropdown">
-                    <a href="about" class="nav-link dropdown-toggle">
-                    </a>
-                    <div class="dropdown-menu">
+                        <span class="lang-en">About Team</span>
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <div class="dropdown-menu">
                         <a href="about" class="dropdown-item">
+                            <span class="lang-ar">عن الفريق</span>
+                            <span class="lang-en">About Team</span>
+                        </a>
                         <a href="team" class="dropdown-item">
                             <span class="lang-ar">الأعضاء</span>
                             <span class="lang-en">Members</span>
-                        <a href="team" class="dropdown-item">
+                        </a>
                         <a href="structure" class="dropdown-item">
                             <span class="lang-ar">الهيكل التنظيمي</span>
                             <span class="lang-en">Structure</span>
-                        <a href="structure" class="dropdown-item">
+                        </a>
                     </div>
                 </div>
+
                 <a href="administrations" class="nav-link active">
                     <span class="lang-ar">الإدارات</span>
                     <span class="lang-en">Administrations</span>
                 </a>
-                <a href="administrations" class="nav-link active">
                 <a href="tasks" class="nav-link">
                     <span class="lang-ar">المهام</span>
                     <span class="lang-en">Tasks</span>
-                <a href="tasks" class="nav-link">
+                </a>
                 <a href="decisions" class="nav-link">
                     <span class="lang-ar">القرارات</span>
                     <span class="lang-en">Decisions</span>
-                <a href="decisions" class="nav-link">
+                </a>
                 <a href="contact" class="nav-link">
                     <span class="lang-ar">تواصل معنا</span>
                     <span class="lang-en">Contact</span>
-                <a href="contact" class="nav-link">
-                
-                <div class="controls">
-                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
+                </a>
                 
                 <div class="controls">
                     <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">🌙</button>
                     <button id="lang-toggle" class="btn-icon" aria-label="Toggle Language">English</button>
-                    <span class="lang-en">Educational Administrations</span>
+                </div>
             </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container animate-fade-in">
+                <h1 class="hero-title">
+                    <span class="lang-ar">الإدارات التعليمية</span>
+                    <span class="lang-en">Educational Administrations</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-ar">نعمل على تغطية كافة الإدارات التعليمية بمحافظة القليوبية من خلال فرق تقنية متخصصة.</span>
+                    <span class="lang-en">We work to cover all educational administrations in Qalyubia through specialized technical teams.</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="container animate-fade-in" style="padding-bottom: 5rem;">
+            <div class="admin-grid">
+                <!-- Benha -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة بنها التعليمية</span>
+                        <span class="lang-en">Benha Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Toukh -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة طوخ التعليمية</span>
+                        <span class="lang-en">Toukh Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <!-- Qaha -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة قها التعليمية</span>
+                        <span class="lang-en">Qaha Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <!-- West Shubra -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة غرب شبرا الخيمة</span>
+                        <span class="lang-en">West Shubra Educational Admin</span>
+                    </span>
+                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
+
+                <!-- East Shubra -->
                 <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة شرق شبرا الخيمة</span>
                         <span class="lang-en">East Shubra Educational Admin</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Qanater -->
                 <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة القناطر الخيرية</span>
                         <span class="lang-en">Qanater Educational Administration</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Qalyub -->
                 <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة قليوب التعليمية</span>
                         <span class="lang-en">Qalyub Educational Administration</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Khanka -->
                 <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة الخانكة التعليمية</span>
                         <span class="lang-en">Khanka Educational Administration</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Shebin -->
                 <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة شبين القناطر</span>
                         <span class="lang-en">Shebin El Qanater Administration</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
                 
-                 <div class="admin-card">
+                <!-- Kafr Shukr -->
+                <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة كفر شكر التعليمية</span>
                         <span class="lang-en">Kafr Shukr Educational Administration</span>
                     </span>
                     <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
-                 <div class="admin-card">
+                <!-- Obour -->
+                <div class="admin-card">
                     <span class="admin-name">
                         <span class="lang-ar">إدارة العبور التعليمية</span>
                         <span class="lang-en">Obour Educational Administration</span>
                     </span>
                     <span class="admin-status">
-                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
-                        <span class="lang-en">Coming Soon</span>
-                    </span>
-                </div>
-                 <div class="admin-card">
-                    <span class="admin-name">
-                        <span class="lang-ar">إدارة الخصوص التعليمية</span>
-                        <span class="lang-en">Khusus Educational Administration</span>
-                    </span>
-                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
                         <span class="lang-ar">سيتم التفعيل قريبًا</span>
                         <span class="lang-en">Coming Soon</span>
                     </span>
                 </div>
 
+                <!-- Khusus -->
+                <div class="admin-card">
+                    <span class="admin-name">
+                        <span class="lang-ar">إدارة الخصوص التعليمية</span>
+                        <span class="lang-en">Khusus Educational Administration</span>
+                    </span>
+                    <span class="admin-status">
+                        <i class="fas fa-clock"></i>
+                        <span class="lang-ar">سيتم التفعيل قريبًا</span>
+                        <span class="lang-en">Coming Soon</span>
+                    </span>
+                </div>
             </div>
             
-            <div style="margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <div style="margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.95rem; background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px dashed var(--border);">
+                <i class="fas fa-info-circle" style="margin-bottom: 0.5rem; display: block; font-size: 1.2rem; color: var(--primary);"></i>
                 <span class="lang-ar">* سيتم تفعيل المواقع الفرعية فور تشكيل الفرق التقنية الخاصة بكل إدارة.</span>
                 <span class="lang-en">* Sub-websites will be activated once the technical teams for each administration are formed.</span>
             </div>
