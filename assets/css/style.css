@@ -888,16 +888,25 @@ img {
     outline-offset: 2px;
 }
 
+body.menu-open {
+    overflow: hidden !important;
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overscroll-behavior: none;
+}
+
 /* Mobile overlay for nav */
 .nav-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(2px);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
     z-index: 999;
+    touch-action: none; /* Prevent scroll on overlay */
 }
 .nav-overlay.active {
     opacity: 1;
@@ -921,52 +930,209 @@ img {
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
-        left: -100%;
-        top: var(--header-height);
+        top: 0;
+        bottom: 0;
+        left: -320px;
         flex-direction: column;
         background-color: var(--bg-body);
-        width: 100%;
-        height: calc(100vh - var(--header-height));
-        padding: 2rem;
-        transition: 0.3s;
-        border-top: 1px solid var(--border);
+        width: 320px;
+        max-width: 85vw;
+        height: 100dvh;
+        padding: 0; /* Changed to handle header/footer */
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--border);
         overflow-y: auto;
+        overscroll-behavior: contain; /* Prevent scroll chaining to background */
+        z-index: 1001;
+        box-shadow: 0 0 40px rgba(0,0,0,0.15);
+        display: flex !important;
+        scrollbar-width: none; /* Hide scrollbar for clean look */
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
     }
-    .nav-menu a {
-        padding: 0.75rem 1rem;
-        font-size: 1.05rem;
+
+    .nav-menu::-webkit-scrollbar { display: none; }
+
+    [dir="rtl"] .nav-menu {
+        left: auto;
+        right: -320px;
+        border-right: none;
+        border-left: 1px solid var(--border);
     }
 
     .nav-menu.active {
         left: 0;
     }
 
-    .hamburger {
-        display: flex;
-    }
-    
-    [dir="rtl"] .nav-menu {
-        left: auto;
-        right: -100%;
-    }
-    
     [dir="rtl"] .nav-menu.active {
         right: 0;
     }
-    
-    .hero-title {
-        font-size: 2rem;
+
+    /* Sidebar Header */
+    .nav-menu::before {
+        content: 'EDU-TECH Qalyubia';
+        display: flex;
+        align-items: center;
+        height: 80px;
+        padding: 0 1.5rem;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--primary);
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 1rem;
+        flex-shrink: 0;
     }
-    .features {
-        padding: 3.5rem 0;
+
+    /* Sidebar Links Container */
+    .nav-menu .nav-link, 
+    .nav-menu .dropdown {
+        padding: 0 1rem;
+        width: 100%;
     }
-    .card {
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem !important;
+        margin-bottom: 0.5rem;
+        border-radius: 0.75rem;
+        color: var(--text-main);
+        font-weight: 600;
+        transition: all 0.2s ease;
+        position: relative;
+        background: transparent;
+    }
+
+    .nav-link::after { display: none; } /* Remove desktop underline */
+
+    .nav-link:hover, 
+    .nav-link.active {
+        background-color: rgba(var(--primary-rgb, 2, 132, 199), 0.08);
+        color: var(--primary);
+    }
+
+    /* Add Icons via CSS for common links */
+    .nav-link[href="index"]::before { content: '\f015'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+    .nav-link[href="about"]::before { content: '\f05a'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+    .nav-link[href="administrations"]::before { content: '\f1ad'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+    .nav-link[href="tasks"]::before { content: '\f0ae'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+    .nav-link[href="decisions"]::before { content: '\f0e3'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+    .nav-link[href="contact"]::before { content: '\f0e0'; font-family: 'Font Awesome 6 Free'; font-weight: 900; width: 20px; }
+
+    /* Dropdown in Sidebar */
+    .dropdown {
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+    .dropdown-menu {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none;
+        transform: none !important;
+        box-shadow: none !important;
+        background: rgba(var(--primary-rgb, 2, 132, 199), 0.03) !important;
+        border: none !important;
+        margin: 0.5rem 0 0 1rem !important;
+        padding: 0.5rem !important;
+        border-left: 2px solid var(--border) !important;
+    }
+    [dir="rtl"] .dropdown-menu {
+        margin: 0.5rem 1rem 0 0 !important;
+        border-left: none !important;
+        border-right: 2px solid var(--border) !important;
+    }
+    .dropdown.active .dropdown-menu {
+        display: flex !important;
+    }
+
+    /* Sidebar Footer (Controls) */
+    .nav-menu .controls {
+        margin-top: auto;
         padding: 1.5rem;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        width: 100%;
     }
-    .news-list {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
+
+    .btn-icon {
+        width: 100%;
+        border-radius: 0.75rem;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        gap: 0.5rem;
     }
+
+    /* Hamburger Professional Animation */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 1002;
+        width: 45px;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger:hover {
+        border-color: var(--primary);
+        background: rgba(var(--primary-rgb, 2, 132, 199), 0.05);
+    }
+
+    .bar {
+        width: 22px;
+        height: 2px;
+        background-color: var(--text-main);
+        border-radius: 4px;
+        transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        position: relative;
+    }
+
+    /* Professional Touch: Different lengths */
+    .bar:nth-child(1) { width: 14px; margin-left: auto; }
+    .bar:nth-child(2) { width: 22px; }
+    .bar:nth-child(3) { width: 18px; margin-left: auto; }
+
+    [dir="ltr"] .bar:nth-child(1),
+    [dir="ltr"] .bar:nth-child(3) {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .hamburger.active .bar {
+        width: 22px !important;
+        margin: 0 !important;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .hero-title { font-size: 2rem; }
 }
 
 /* Team Card Modern Responsive Fixes */
