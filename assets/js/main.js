@@ -39,14 +39,37 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
             const isOpen = navMenu.classList.contains('active');
             overlay.classList.toggle('active', isOpen);
-            body.style.overflow = isOpen ? 'hidden' : '';
+            body.classList.toggle('menu-open', isOpen);
+
+            // Staggered animation for links
+            if (isOpen) {
+                const links = navMenu.querySelectorAll('.nav-link, .dropdown');
+                links.forEach((link, index) => {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateX(' + (currentLang === 'ar' ? '20px' : '-20px') + ')';
+                    link.style.transition = 'all 0.4s ease ' + (0.1 + index * 0.05) + 's';
+                    
+                    setTimeout(() => {
+                        link.style.opacity = '1';
+                        link.style.transform = 'translateX(0)';
+                    }, 50);
+                });
+            } else {
+                // Reset styles when closing
+                const links = navMenu.querySelectorAll('.nav-link, .dropdown');
+                links.forEach(link => {
+                    link.style.transition = '';
+                    link.style.opacity = '';
+                    link.style.transform = '';
+                });
+            }
         });
     }
     overlay.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         overlay.classList.remove('active');
-        body.style.overflow = '';
+        body.classList.remove('menu-open');
     });
     // Close menu when clicking a link (mobile)
     if (navMenu) {
@@ -63,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
                 overlay.classList.remove('active');
-                body.style.overflow = '';
+                body.classList.remove('menu-open');
             }
         });
     }
@@ -95,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
-            body.style.overflow = '';
+            body.classList.remove('menu-open');
         }
     });
 
