@@ -231,7 +231,7 @@
     },
     {
       "parameters": {
-        "url": "https://edutech-egy.com/assets/edu-assist/knowledge-base.json",
+        "url": "https://edutech-egy.com/assets/edu-assist/edu-assist-knowledge.json",
         "options": {
           "timeout": 15000
         }
