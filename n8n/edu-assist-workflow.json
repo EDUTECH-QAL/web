@@ -1,0 +1,888 @@
+{
+  "name": "EDU Assist Telegram Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "edited_message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1180,
+        120
+      ],
+      "id": "72ed927e-44fd-43ac-8cb2-f7abd1c7be81",
+      "name": "Telegram Trigger",
+      "webhookId": "d1375b01-1271-44ae-80e2-07fcb430528a",
+      "credentials": {
+        "telegramApi": {
+          "id": "mZJJ8lmtcZQkSM7O",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map((item) => {\n  const msg = item.json.message ?? item.json.edited_message ?? {};\n  const text = (msg.text ?? '').trim();\n  return {\n    json: {\n      raw: item.json,\n      chatId: msg.chat?.id ?? '',\n      userId: msg.from?.id ?? '',\n      userName: msg.from?.first_name ?? '',\n      userMessage: text,\n      normalizedMessage: text.toLowerCase(),\n      timestamp: new Date().toISOString()\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        120
+      ],
+      "id": "2d4c9f71-cf66-4b35-9b5c-4e6f3fa7a101",
+      "name": "Prepare Input"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map((item) => {\n  const text = item.json.normalizedMessage || '';\n  const hasAny = (...terms) => terms.some((term) => text.includes(term));\n\n  let intent = 'ai';\n  if (!text) intent = 'empty';\n  else if (hasAny('/start', 'ابدأ', 'ابدا', 'السلام', 'اهلا', 'مرحبا', 'hello', 'hi')) intent = 'welcome';\n  else if (hasAny('من انتم', 'ما هو الفريق', 'مين انتم', 'عرفني بالفريق', 'نبذة', 'نبذه', 'ايه هو الفريق')) intent = 'faq_about';\n  else if (hasAny('تواصل', 'اتواصل', 'لينك', 'رابط', 'contact', 'الموقع', 'website')) intent = 'faq_contact';\n  else if (hasAny('tech day', 'تك داي', 'techday', 'الفعالية', 'الفعاليات')) intent = 'faq_techday';\n\n  return {\n    json: {\n      ...item.json,\n      intent\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -740,
+        120
+      ],
+      "id": "35a73238-6c03-4cae-8814-f8f45fb5ef21",
+      "name": "Detect Intent"
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ ({ empty: 0, welcome: 1, faq_about: 2, faq_contact: 3, faq_techday: 4, ai: 5 })[$json.intent] ?? 5 }}"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -520,
+        120
+      ],
+      "id": "8b158aaf-0e2e-4a7d-93b0-f9598fcb319d",
+      "name": "Switch Intent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ea027499-40e6-49bf-9b77-0eb55879cb4f",
+              "name": "replyText",
+              "value": "الرسالة الحالية لا تحتوي على نص واضح. من فضلك اكتب سؤالك عن فريق EDU-TECH Qalyubia أو عن الفعاليات أو طرق التواصل الرسمية.",
+              "type": "string"
+            },
+            {
+              "id": "0c728d60-3f84-4901-bad4-5f0196a61b90",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -180
+      ],
+      "id": "cb57ab2c-f634-4e7d-bd66-a2f88b36f377",
+      "name": "Reply Empty"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb13212d-bdb9-48d2-a09d-1cfd7f1b5025",
+              "name": "replyText",
+              "value": "مرحبًا بك في EDU Assist.\n\nأنا المساعد الرسمي لفريق EDU-TECH Qalyubia، ويمكنني مساعدتك في:\n- التعريف بالفريق\n- الفعاليات مثل Tech Day\n- الهيكل الإداري\n- الروابط الرسمية وطرق التواصل\n\nاكتب سؤالك مباشرة وسأرد عليك بشكل مختصر وواضح.",
+              "type": "string"
+            },
+            {
+              "id": "2d89795e-a0b1-459d-aebe-4d56dd8e6f0d",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "f6ef9a69-c53f-4c5d-a3f6-a5216110fd9d",
+      "name": "Reply Welcome"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "727c1720-d695-4ed4-a1ca-bb673a35d74d",
+              "name": "replyText",
+              "value": "فريق EDU-TECH Qalyubia هو فريق تقني رسمي تابع لمديرية التربية والتعليم بالقليوبية.\n\nيعمل الفريق على دعم التحول الرقمي داخل المدارس والإدارات التعليمية من خلال:\n- تطوير أنظمة وبرمجيات تعليمية وإدارية\n- تنفيذ فعاليات تدريبية مثل Tech Day\n- نشر الثقافة التقنية بين الطلاب\n- تقديم خدمات مجانية 100% للمدارس الرسمية والرسمية للغات\n\nإذا أحببت، يمكنني أيضًا توضيح الهيكل الإداري أو الفعاليات الرسمية.",
+              "type": "string"
+            },
+            {
+              "id": "cfd5f368-f267-4f37-9b69-d1d75a3ae5d7",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            },
+            {
+              "id": "3af60f9b-65a0-49a4-bd9f-321ab0ca5677",
+              "name": "matchedKnowledge",
+              "value": "team-overview",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        60
+      ],
+      "id": "457b4356-7465-4ac7-9958-3f50fe0cc7b2",
+      "name": "Reply About"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "428748f8-2f54-4f51-aede-b42195cf20e0",
+              "name": "replyText",
+              "value": "للتواصل الرسمي مع فريق EDU-TECH Qalyubia يمكنك استخدام:\n- الموقع الرسمي: https://edutech-egy.com/\n- صفحة التواصل الرسمية: https://edutech-egy.com/contact\n- إدارة العبور: https://obour.edutech-egy.com/\n\nإذا كان عندك استفسار محدد عن الفريق، اكتب سؤالك مباشرة.",
+              "type": "string"
+            },
+            {
+              "id": "4d0d41e8-ae47-4e01-a5d7-8deae583f32c",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            },
+            {
+              "id": "a5d7d8e0-a071-4c2f-b4e2-bd610fe2a01a",
+              "name": "matchedKnowledge",
+              "value": "official-links",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        180
+      ],
+      "id": "11f1a3c0-41e3-4df1-b2ce-c4cf1a5e4205",
+      "name": "Reply Contact"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3888f4c0-b2fe-4f5b-ab1c-0f6d957bf5b9",
+              "name": "replyText",
+              "value": "Tech Day هي فعالية تدريبية تعليمية داخل المدارس، وتهدف إلى:\n- تعليم البرمجة والذكاء الاصطناعي والروبوتات وتصميم الألعاب\n- تنمية مهارات التواصل والقيادة\n- دمج التعلم العملي مع الأنشطة التفاعلية\n- إعداد جيل تقني قادر على مواكبة التطور الرقمي\n\nإذا أردت، يمكنني أيضًا توضيح دور الفريق في هذه الفعالية.",
+              "type": "string"
+            },
+            {
+              "id": "e394fa5a-95d6-4df0-8c8f-290efbf242d0",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            },
+            {
+              "id": "27cfba94-0c74-4a2b-a4ef-8307adbf28d3",
+              "name": "matchedKnowledge",
+              "value": "tech-day",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        300
+      ],
+      "id": "40177446-40b4-4950-a4b9-9c601e9657dd",
+      "name": "Reply Tech Day"
+    },
+    {
+      "parameters": {
+        "url": "https://edutech-egy.com/assets/edu-assist/knowledge-base.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -260,
+        460
+      ],
+      "id": "e792cb46-4d2d-4d6b-bc46-1bb876d2745b",
+      "name": "Fetch Knowledge Base"
+    },
+    {
+      "parameters": {
+        "jsCode": "const original = $items('Detect Intent', 0, 0)[0].json;\nconst knowledge = items[0].json;\nconst list = Array.isArray(knowledge) ? knowledge : (knowledge.data || knowledge.items || []);\nconst text = (original.userMessage || '').toLowerCase();\nconst words = text.split(/\\s+/).filter((word) => word && word.length > 1);\n\nconst scored = list.map((entry) => {\n  const haystack = [entry.title, entry.content, ...(entry.keywords || [])].join(' ').toLowerCase();\n  let score = 0;\n  for (const word of words) {\n    if (haystack.includes(word)) score += 3;\n  }\n  for (const keyword of entry.keywords || []) {\n    if (text.includes(String(keyword).toLowerCase())) score += 5;\n  }\n  if ((entry.category || '').toLowerCase() === 'decisions' && text.includes('قرار')) score += 2;\n  return { entry, score };\n}).filter((row) => row.score > 0).sort((a, b) => b.score - a.score).slice(0, 4);\n\nconst knowledgeContext = scored.length\n  ? scored.map(({ entry }) => `- ${entry.title}: ${entry.content}`).join('\\n')\n  : 'لا توجد مقاطع معرفة مطابقة بشكل مباشر. اعتمد فقط على المعلومات الأساسية المتاحة، وإذا لم تتوفر معلومة مؤكدة فاذكر ذلك بوضوح.';\n\nreturn [{\n  json: {\n    ...original,\n    source: 'ai',\n    matchedKnowledge: scored.map(({ entry }) => entry.id).join(', '),\n    knowledgeContext\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        460
+      ],
+      "id": "98be4cd7-9179-4480-a862-1d6cd3b18ae8",
+      "name": "Search Knowledge"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=أنت \"EDU Assist\"، مساعد ذكي رسمي تابع لفريق EDU-TECH Qalyubia.\n\nاختصاصك هو الرد على أسئلة الطلاب والمعلمين والمهتمين بالفريق، مع الالتزام بالمعلومات الرسمية المتاحة فقط.\n\nقواعد مهمة:\n- اكتب بالعربية الواضحة والمباشرة.\n- اجعل الرد مناسبًا لرسائل Telegram: مختصر ومنظم.\n- لا تختلق أسماء أو مناصب أو قرارات أو وعود غير مذكورة.\n- إذا كانت المعلومة غير مؤكدة، قل: \"هذه المعلومة غير متاحة لدي حاليًا بشكل مؤكد.\"\n- إذا كان السؤال عن التواصل، وجّه المستخدم إلى https://edutech-egy.com/contact\n- لا تتحدث باسم جهات خارج الفريق.\n\nالمعلومات الأساسية الثابتة:\n- الفريق تابع لمديرية التربية والتعليم بالقليوبية.\n- يدعم التحول الرقمي داخل المدارس والإدارات التعليمية.\n- من أنشطته تطوير أنظمة وبرمجيات تعليمية وإدارية وتنفيذ فعاليات تدريبية مثل Tech Day.\n\nمقاطع المعرفة المسترجعة:\n{{ $json.knowledgeContext }}\n\nسؤال المستخدم:\n{{ $json.userMessage }}\n\nاكتب الرد النهائي فقط.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        240,
+        460
+      ],
+      "id": "4b92337d-abc7-499a-aa10-85ce368695f4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map((item) => ({\n  json: {\n    ...item.json,\n    replyText: item.json.output,\n    replyPreview: String(item.json.output || '').slice(0, 150)\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        460
+      ],
+      "id": "1b6805b2-3112-4c42-a03a-778cc2e3e7d3",
+      "name": "Prepare AI Reply"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d5bf57c5-a917-4e79-8652-bb69c392daf0",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        60
+      ],
+      "id": "4e6d6c90-ddab-49ec-ab62-47f5d0ebdf54",
+      "name": "Prepare FAQ About Log"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "36d6854d-5337-4429-b8c1-1f6a1c6a3f8c",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        180
+      ],
+      "id": "5465dad7-1650-47c1-a9bd-1177f278bd2d",
+      "name": "Prepare FAQ Contact Log"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ca68b4b0-cab7-4b3f-a0ee-a8c6f0dd3157",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        300
+      ],
+      "id": "f1789322-d6a2-4331-b54a-6b71b2f177f8",
+      "name": "Prepare FAQ Tech Day Log"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe79e951-f9e7-4e6e-9b49-064bf846a4a8",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        -60
+      ],
+      "id": "f1f8858a-5dcf-46e0-a304-ac81ccaf597b",
+      "name": "Prepare Welcome Log"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9f9d2d7e-7926-4c15-bca0-37fafb1966b8",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        -180
+      ],
+      "id": "da42bf10-7a4d-45f6-aa27-e3de798e72d7",
+      "name": "Prepare Empty Log"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.replyText }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        700,
+        120
+      ],
+      "id": "38cbe4c2-f764-430a-a316-3a8219394732",
+      "name": "Send a text message",
+      "webhookId": "8ad61352-f8f3-4c85-ad40-9563bf954635",
+      "credentials": {
+        "telegramApi": {
+          "id": "mZJJ8lmtcZQkSM7O",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "PASTE_LOG_SHEET_URL_HERE"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "logs"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.timestamp }}",
+            "chatId": "={{ $json.chatId }}",
+            "userId": "={{ $json.userId }}",
+            "userName": "={{ $json.userName }}",
+            "userMessage": "={{ $json.userMessage }}",
+            "intent": "={{ $json.intent }}",
+            "source": "={{ $json.source }}",
+            "matchedKnowledge": "={{ $json.matchedKnowledge || '' }}",
+            "replyPreview": "={{ $json.replyPreview || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "chatId",
+              "displayName": "chatId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "userId",
+              "displayName": "userId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "userName",
+              "displayName": "userName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "userMessage",
+              "displayName": "userMessage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "intent",
+              "displayName": "intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "matchedKnowledge",
+              "displayName": "matchedKnowledge",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "replyPreview",
+              "displayName": "replyPreview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        700,
+        300
+      ],
+      "id": "18bb8ad1-e949-43d6-a7b0-52076db2db90",
+      "name": "Append Log Row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.chatId }}"
+      },
+      "id": "89e1cae1-0cc0-425a-a978-2fba31193ee6",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        240,
+        680
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "model": "xiaomi/mimo-v2-flash",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        20,
+        680
+      ],
+      "id": "c6fc0e1c-a089-4436-bc55-2c1c1a137243",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "inP5Y60ghqmF5XbN",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Input": {
+      "main": [
+        [
+          {
+            "node": "Detect Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Intent": {
+      "main": [
+        [
+          {
+            "node": "Switch Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Intent": {
+      "main": [
+        [
+          {
+            "node": "Reply Empty",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Welcome",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply About",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Contact",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Tech Day",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Knowledge Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Knowledge Base": {
+      "main": [
+        [
+          {
+            "node": "Search Knowledge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Knowledge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Prepare AI Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare AI Reply": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Empty": {
+      "main": [
+        [
+          {
+            "node": "Prepare Empty Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Welcome": {
+      "main": [
+        [
+          {
+            "node": "Prepare Welcome Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply About": {
+      "main": [
+        [
+          {
+            "node": "Prepare FAQ About Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Contact": {
+      "main": [
+        [
+          {
+            "node": "Prepare FAQ Contact Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Tech Day": {
+      "main": [
+        [
+          {
+            "node": "Prepare FAQ Tech Day Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Empty Log": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Welcome Log": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare FAQ About Log": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare FAQ Contact Log": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare FAQ Tech Day Log": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
