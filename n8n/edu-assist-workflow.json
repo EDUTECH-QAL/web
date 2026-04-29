@@ -54,6 +54,7 @@
     {
       "parameters": {
         "mode": "expression",
+        "numberOutputs": 6,
         "output": "={{ ({ empty: 0, welcome: 1, faq_about: 2, faq_contact: 3, faq_techday: 4, ai: 5 })[$json.intent] ?? 5 }}"
       },
       "type": "n8n-nodes-base.switch",
@@ -402,7 +403,7 @@
     },
     {
       "parameters": {
-        "chatId": "={{ $json.chatId }}",
+        "chatId": "={{ $('Prepare Input').item.json.chatId }}",
         "text": "={{ $json.replyText }}",
         "additionalFields": {
           "appendAttribution": false
