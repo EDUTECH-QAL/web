@@ -1,0 +1,7 @@
+# Sensitive local student/event data
+assets/edu-assist/techday-students-db.json
+n8n/فعالية TechDay/*.xlsx
+
+# Optional local exports or temp files
+*.tmp
+*.bak

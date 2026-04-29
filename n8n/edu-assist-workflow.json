@@ -40,7 +40,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return items.map((item) => {\n  const text = item.json.normalizedMessage || '';\n  const hasAny = (...terms) => terms.some((term) => text.includes(term));\n\n  let intent = 'ai';\n  if (!text) intent = 'empty';\n  else if (hasAny('/start', 'ابدأ', 'ابدا', 'السلام', 'اهلا', 'مرحبا', 'hello', 'hi')) intent = 'welcome';\n  else if (hasAny('من انتم', 'ما هو الفريق', 'مين انتم', 'عرفني بالفريق', 'نبذة', 'نبذه', 'ايه هو الفريق')) intent = 'faq_about';\n  else if (hasAny('تواصل', 'اتواصل', 'لينك', 'رابط', 'contact', 'الموقع', 'website')) intent = 'faq_contact';\n  else if (hasAny('tech day', 'تك داي', 'techday', 'الفعالية', 'الفعاليات')) intent = 'faq_techday';\n\n  return {\n    json: {\n      ...item.json,\n      intent\n    }\n  };\n});"
+        "jsCode": "return items.map((item) => {\n  const text = item.json.normalizedMessage || '';\n  const hasAny = (...terms) => terms.some((term) => text.includes(term));\n  const hasStudentId = /\\b\\d{5,}\\b/.test(text);\n  const hasUsername = /\\bstudent_\\d+\\b/i.test(text);\n  const hasEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}/i.test(text);\n  const hasStudentContext = hasAny('الطالب', 'طالب', 'رقم الطالب', 'بيانات الطالب', 'بياناته', 'معلومات الطالب', 'شهادة', 'النقاط', 'حضر', 'الحضور', 'المجموعة', 'المدرسة');\n\n  let intent = 'ai';\n  if (!text) intent = 'empty';\n  else if (hasAny('/student', 'student command', 'student help')) intent = 'command_student';\n  else if (hasAny('/techday', 'techday command', 'techday help')) intent = 'command_techday';\n  else if (hasAny('/start', 'ابدأ', 'ابدا', 'السلام', 'اهلا', 'مرحبا', 'hello', 'hi')) intent = 'welcome';\n  else if (hasAny('من انتم', 'ما هو الفريق', 'مين انتم', 'عرفني بالفريق', 'نبذة', 'نبذه', 'ايه هو الفريق')) intent = 'faq_about';\n  else if (hasAny('تواصل', 'اتواصل', 'لينك', 'رابط', 'contact', 'الموقع', 'website')) intent = 'faq_contact';\n  else if (hasStudentId || hasUsername || hasEmail || hasStudentContext) intent = 'student_lookup';\n  else if (hasAny('tech day', 'تك داي', 'techday', 'الفعالية', 'الفعاليات')) intent = 'faq_techday';\n\n  return {\n    json: {\n      ...item.json,\n      intent\n    }\n  };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -54,8 +54,8 @@
     {
       "parameters": {
         "mode": "expression",
-        "numberOutputs": 6,
-        "output": "={{ ({ empty: 0, welcome: 1, faq_about: 2, faq_contact: 3, faq_techday: 4, ai: 5 })[$json.intent] ?? 5 }}"
+        "numberOutputs": 9,
+        "output": "={{ ({ empty: 0, welcome: 1, faq_about: 2, faq_contact: 3, faq_techday: 4, command_student: 5, command_techday: 6, student_lookup: 7, ai: 8 })[$json.intent] ?? 8 }}"
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
@@ -590,6 +590,117 @@
           "name": "OpenRouter account"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "https://edutech-egy.com/assets/edu-assist/techday-students-db.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -260,
+        620
+      ],
+      "id": "46c194fb-d43d-4c6e-bb9d-d19689670d02",
+      "name": "Fetch Student Database"
+    },
+    {
+      "parameters": {
+        "jsCode": "const original = $items('Detect Intent', 0, 0)[0].json;\nconst payload = items[0].json || {};\nconst students = Array.isArray(payload.students) ? payload.students : [];\nconst events = Array.isArray(payload.events) ? payload.events : [];\nconst eventsById = Object.fromEntries(events.map((event) => [event.event_id, event]));\nconst rawQuery = String(original.userMessage || '').trim();\n\nfunction normalizeArabic(text) {\n  return String(text || '')\n    .toLowerCase()\n    .replace(/[\\u064B-\\u065F\\u0670]/g, '')\n    .replace(/[أإآ]/g, 'ا')\n    .replace(/ى/g, 'ي')\n    .replace(/ة/g, 'ه')\n    .replace(/ؤ/g, 'و')\n    .replace(/ئ/g, 'ي')\n    .replace(/[^\\p{L}\\p{N}@._\\s-]/gu, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\nfunction maskEmail(email) {\n  const value = String(email || '');\n  if (!value.includes('@')) return '';\n  const [name, domain] = value.split('@');\n  if (name.length <= 2) return `${name[0] || ''}*@${domain}`;\n  return `${name.slice(0, 2)}${'*'.repeat(Math.max(2, name.length - 2))}@${domain}`;\n}\n\nconst query = normalizeArabic(rawQuery);\nconst bulkSignals = [\n  'كل الطلاب',\n  'جميع الطلاب',\n  'هاتلي كل',\n  'اعرض كل',\n  'اسمهم',\n  'الطلاب اللي',\n  'قائمة الطلاب',\n  'كل من',\n  'كل طالب',\n  'كل الاسماء'\n];\n\nif (bulkSignals.some((signal) => query.includes(normalizeArabic(signal)))) {\n  const replyText = 'لأسباب تنظيمية وخصوصية، يمكنني التعامل مع بيانات طالب واحد فقط في كل مرة. من فضلك أرسل الاسم الكامل للطالب أو رقم الطالب أو اسم المستخدم المرتبط به فقط.';\n  return [{ json: { ...original, source: 'student_db', matchedKnowledge: 'student_lookup_bulk_blocked', replyText, replyPreview: replyText.slice(0, 150) } }];\n}\n\nconst eventHints = [\n  { id: 'techday-west-shubra', patterns: ['غرب شبرا', 'شرق شبرا', 'شبرا الخيمة', 'شبرا الخيمه'] },\n  { id: 'techday-obour', patterns: ['العبور', 'obour'] },\n  { id: 'techday-banha', patterns: ['بنها', 'banha'] },\n];\nconst eventHint = eventHints.find((item) => item.patterns.some((pattern) => query.includes(normalizeArabic(pattern))));\nlet pool = eventHint ? students.filter((student) => student.event_id === eventHint.id) : students.slice();\n\nconst idMatches = [...rawQuery.matchAll(/\\b\\d{5,}\\b/g)].map((match) => match[0]);\nconst usernameMatches = [...rawQuery.matchAll(/\\bstudent_\\d+\\b/gi)].map((match) => match[0].toLowerCase());\nconst emailMatches = [...rawQuery.matchAll(/[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}/gi)].map((match) => match[0].toLowerCase());\nconst identifierCount = idMatches.length + usernameMatches.length + emailMatches.length;\n\nif (identifierCount > 1) {\n  const replyText = 'من فضلك أرسل معرفًا واحدًا فقط في كل مرة: رقم طالب واحد أو اسم مستخدم واحد أو بريد إلكتروني واحد.';\n  return [{ json: { ...original, source: 'student_db', matchedKnowledge: 'student_lookup_multiple_identifiers', replyText, replyPreview: replyText.slice(0, 150) } }];\n}\n\nlet matches = [];\nlet matchedBy = '';\nif (idMatches.length === 1) {\n  matchedBy = 'student_id';\n  matches = pool.filter((student) => String(student.student_id) === idMatches[0]);\n} else if (usernameMatches.length === 1) {\n  matchedBy = 'username';\n  matches = pool.filter((student) => String(student.username || '').toLowerCase() === usernameMatches[0]);\n} else if (emailMatches.length === 1) {\n  matchedBy = 'email';\n  matches = pool.filter((student) => String(student.email_lookup || '').toLowerCase() === emailMatches[0]);\n} else {\n  const quoted = [...rawQuery.matchAll(/[\"'“”](.{3,}?)['\"“”]/g)].map((match) => match[1].trim()).filter(Boolean);\n  if (quoted.length > 1) {\n    const replyText = 'يمكنني البحث عن طالب واحد فقط في الرسالة الواحدة. من فضلك أرسل اسم طالب واحد فقط أو رقمه.';\n    return [{ json: { ...original, source: 'student_db', matchedKnowledge: 'student_lookup_multiple_names', replyText, replyPreview: replyText.slice(0, 150) } }];\n  }\n\n  let candidate = quoted[0] || rawQuery;\n  candidate = candidate\n    .replace(/(?:بيانات|معلومات|حاله|حالة|نقاط|شهاده|شهادة|حضور|حضر|نتيجه|نتيجة|اسم|رقم|الطالب|طالب|في|فعاليه|فعالية|تك داي|tech day|student|lookup|عاوز|عايز|هاتلي|اعرض|اعطني|محتاج|لو سمحت|من فضلك|هل|هو|عن|بتاع|خاصة|خاصه|للطالب|المسجل|المشارك|المشترك)/gi, ' ')\n    .replace(/غرب شبرا|شرق شبرا|شبرا الخيمة|شبرا الخيمه|العبور|بنها/gi, ' ');\n\n  const normalizedCandidate = normalizeArabic(candidate);\n  const tokens = normalizedCandidate.split(' ').filter((token) => token.length > 1);\n\n  if (tokens.length < 2) {\n    const replyText = 'من فضلك أرسل الاسم الكامل للطالب أو رقم الطالب أو اسم المستخدم المرتبط به. لا أستطيع تنفيذ بحث عام أو البحث باسم أول فقط.';\n    return [{ json: { ...original, source: 'student_db', matchedKnowledge: 'student_lookup_need_precise_identifier', replyText, replyPreview: replyText.slice(0, 150) } }];\n  }\n\n  const exact = pool.filter((student) => student.normalized_name === normalizedCandidate);\n  if (exact.length) {\n    matchedBy = 'full_name_exact';\n    matches = exact;\n  } else {\n    matchedBy = 'full_name_partial';\n    matches = pool.filter((student) => {\n      const full = String(student.normalized_name || '');\n      if (full.includes(normalizedCandidate) || normalizedCandidate.includes(full)) return true;\n      return tokens.every((token) => full.includes(token));\n    });\n  }\n}\n\nif (matches.length === 0) {\n  const replyText = 'لم أجد طالبًا مطابقًا بالبيانات الحالية. من فضلك أرسل الاسم الكامل بشكل أدق، أو رقم الطالب، أو اسم المستخدم المرتبط به.';\n  return [{ json: { ...original, source: 'student_db', matchedKnowledge: 'student_lookup_not_found', replyText, replyPreview: replyText.slice(0, 150) } }];\n}\n\nif (matches.length > 1) {\n  const previewList = matches.slice(0, 5).map((student) => `- ${student.student_name} | رقم الطالب: ${student.student_id} | الفعالية: ${student.event_name}`).join('\\n');\n  const replyText = `وجدت أكثر من طالب أو أكثر من سجل مطابق، لذلك لن أرجع بيانات جماعية. من فضلك حدّد طالبًا واحدًا فقط باستخدام رقم الطالب أو اسم المستخدم المرتبط به.\\n\\nأمثلة مطابقة أولية:\\n${previewList}`;\n  return [{ json: { ...original, source: 'student_db', matchedKnowledge: matches.slice(0, 5).map((student) => student.record_id).join(', '), replyText, replyPreview: replyText.slice(0, 150) } }];\n}\n\nconst student = matches[0];\nconst event = eventsById[student.event_id] || {};\nconst attendanceText = student.attended === true ? 'تم تسجيل الحضور' : student.attended === false ? 'لا يوجد حضور مسجل' : 'حالة الحضور غير محددة';\nconst certificateText = student.certificate_blocked === true ? 'محروم من الشهادة' : student.certificate_blocked === false ? 'غير محروم من الشهادة' : 'حالة الشهادة غير محددة';\nconst blacklistText = student.blacklist === true ? 'موجود في القائمة السوداء' : student.blacklist === false ? 'غير موجود في القائمة السوداء' : 'حالة القائمة السوداء غير محددة';\nconst workshops = Array.isArray(event.workshops) ? event.workshops.slice(0, 5).map((workshop) => workshop.title).join('، ') : '';\nconst maskedEmail = student.email_masked || maskEmail(student.email_lookup || '');\n\nconst lines = [\n  'بيانات الطالب المطلوبة:',\n  `- الاسم: ${student.student_name}`,\n  `- رقم الطالب: ${student.student_id}`,\n  `- الفعالية: ${student.event_name}`,\n  `- الإدارة التعليمية: ${student.administration || 'غير محددة'}`,\n  `- المدرسة: ${student.school || 'غير محددة'}`,\n  `- المجموعة: ${student.group_name || 'غير محددة'}${student.group_code ? ` (${student.group_code})` : ''}`,\n  `- السنة الدراسية: ${student.grade || 'غير محددة'}`,\n  `- حالة الحضور: ${attendanceText}`,\n  `- النقاط: ${student.points ?? 0}`,\n  `- الشهادة: ${certificateText}`,\n  `- القائمة السوداء: ${blacklistText}`,\n];\nif (student.attendance_time) lines.push(`- وقت تسجيل الحضور: ${student.attendance_time}`);\nif (maskedEmail) lines.push(`- البريد المسجل: ${maskedEmail}`);\nif (student.username) lines.push(`- اسم المستخدم المرتبط: ${student.username}`);\nif (event.host_school) lines.push(`- مقر الاستضافة: ${event.host_school}`);\nif (workshops) lines.push(`- من ورش الفعالية: ${workshops}`);\nlines.push('إذا أردت الاستعلام عن طالب آخر، أرسل اسمه الكامل أو رقمه في رسالة جديدة منفصلة.');\n\nconst replyText = lines.join('\\n');\nreturn [{\n  json: {\n    ...original,\n    source: 'student_db',\n    matchedKnowledge: student.record_id,\n    studentLookupMode: matchedBy,\n    replyText,\n    replyPreview: replyText.slice(0, 150)\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        620
+      ],
+      "id": "e670a7b5-b328-43a0-8603-5c42e3981aa6",
+      "name": "Handle Student Lookup"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0f7493fd-cb37-4277-b67e-5f8d6b12cd01",
+              "name": "replyText",
+              "value": "أمر /student مخصص للاستعلام عن طالب واحد فقط في كل رسالة.\\n\\nاستخدم أحد الأشكال التالية:\\n- /student 314309\\n- /student student_314309\\n- /student آدم احمد شوقي\\n\\nمهم:\\n- لا يمكنني إرجاع قوائم جماعية للطلاب\\n- الاسم الأول فقط لا يكفي\\n- الأفضل استخدام رقم الطالب أو اسم المستخدم المرتبط",
+              "type": "string"
+            },
+            {
+              "id": "f578b455-2093-4b8a-b894-34a5c366f002",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            },
+            {
+              "id": "7b51e98c-8a41-4fe4-bf0c-6bf4e6110e12",
+              "name": "matchedKnowledge",
+              "value": "command_student",
+              "type": "string"
+            },
+            {
+              "id": "a76444a4-e09c-4858-bf32-7c0a9f4f9504",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        420
+      ],
+      "id": "1bb8b5d5-a8a1-4c8d-9d4e-aed0bb3ea311",
+      "name": "Reply Student Command"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "49f63b82-b205-45b2-a89f-a2f9f0e68f6b",
+              "name": "replyText",
+              "value": "أمر /techday يساعدك في الأسئلة السريعة عن الفعاليات.\\n\\nالمتاح حاليًا:\\n- Tech Day غرب شبرا الخيمة\\n- Tech Day العبور\\n- Tech Day بنها\\n\\nأمثلة:\\n- /techday غرب شبرا\\n- /techday العبور\\n- /techday بنها\\n\\nويمكنك أيضًا السؤال بصيغة طبيعية مثل: ما هي ورش فعالية بنها؟",
+              "type": "string"
+            },
+            {
+              "id": "640cf5e2-0627-4991-8897-fc3239b6409b",
+              "name": "source",
+              "value": "faq",
+              "type": "string"
+            },
+            {
+              "id": "49abf886-69fd-43f8-b11d-6035fbe4a21c",
+              "name": "matchedKnowledge",
+              "value": "command_techday",
+              "type": "string"
+            },
+            {
+              "id": "3121c0d6-44b6-490d-8f30-6f7da6d49b34",
+              "name": "replyPreview",
+              "value": "={{ String($json.replyText || '').slice(0, 150) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        540
+      ],
+      "id": "ba9652af-5bc0-4218-92f5-c5a4fac209e7",
+      "name": "Reply TechDay Command"
     }
   ],
   "connections": {
@@ -659,6 +770,27 @@
         [
           {
             "node": "Reply Tech Day",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Student Command",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply TechDay Command",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Student Database",
             "type": "main",
             "index": 0
           }
@@ -873,6 +1005,65 @@
           {
             "node": "AI Agent",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Student Database": {
+      "main": [
+        [
+          {
+            "node": "Handle Student Lookup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Student Lookup": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply Student Command": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply TechDay Command": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append Log Row",
+            "type": "main",
             "index": 0
           }
         ]
